@@ -56,7 +56,7 @@ public class TutorialClassAdapter extends
         TextView tutorialClassSubject;
         TextView tutorialTopic;
 
-        public TutorialClassViewHolder(View itemView) {
+        TutorialClassViewHolder(View itemView) {
             super(itemView);
             tutorialDate = (TextView) itemView.findViewById(R.id.tutorial_date);
             tutorialDayTime = (TextView) itemView.findViewById(R.id.tutorial_day_time);
