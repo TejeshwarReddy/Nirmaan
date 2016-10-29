@@ -28,15 +28,14 @@ public class McqAdapter extends RecyclerView.Adapter<McqAdapter.McqViewHolder> {
 
     class McqViewHolder extends RecyclerView.ViewHolder {
         TextView question;
-        TextView answer;
-
+        TextView q_no;
 
         RadioGroup radioGroup;
         McqViewHolder(View itemView) {
             super(itemView);
-            question = (TextView) itemView.findViewById(R.id.McqQuestion);
-            answer = (TextView) itemView.findViewById(R.id.McqAnswer);
-            radioGroup=(RadioGroup) itemView.findViewById(R.id.RadioGroup);
+            q_no = (TextView) itemView.findViewById(R.id.mcq_q_no);
+            question = (TextView) itemView.findViewById(R.id.mcq_q_text);
+            radioGroup=(RadioGroup) itemView.findViewById(R.id.mcq_q_radiogroup);
         }
 
     }
@@ -58,24 +57,25 @@ public class McqAdapter extends RecyclerView.Adapter<McqAdapter.McqViewHolder> {
 
         for (int j = 0; j < mcq.getOptions().length; j++) {
             RadioButton radioButton = new RadioButton(context);
-            if (j == mcq.getAnswer())
+            if (j == mcq.getAnswer()) {
+                radioButton.setTextColor(Color.parseColor("#000000"));
                 radioButton.setChecked(true);
+            }
             radioButton.setClickable(false);
-
             radioGroupLayoutParams= new RadioGroup.LayoutParams(
                     RadioGroup.LayoutParams.MATCH_PARENT,
                     RadioGroup.LayoutParams.WRAP_CONTENT
             );
             radioGroupLayoutParams.gravity = Gravity.CENTER;
             radioButton.setLayoutParams(radioGroupLayoutParams);
-            radioButton.setTextColor(Color.parseColor("#565050")); // needs to be changed later
+//            radioButton.setTextColor(Color.parseColor("#000000")); // needs to be changed later
             radioButton.setText(mcq.getOptions()[j]);
             radioGroup.addView(radioButton);
         }
 
         // needs to be changed later
-        holder.question.setText("Q" + position + ") " +mcq.getQuestion());
-        holder.answer.setText("Answer) " + mcq.getAnswer());
+        holder.q_no.setText(position+1+"");
+        holder.question.setText(mcq.getQuestion());
     }
 
 
