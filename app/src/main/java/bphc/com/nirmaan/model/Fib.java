@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by sarath on 30-10-2016.
  */
 
-public class Fib implements Parcelable{
+public class Fib {
 
     private String question;
     private String[] answer;
@@ -17,10 +17,27 @@ public class Fib implements Parcelable{
         this.answer = answer;
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String[] getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String[] answer) {
+        this.answer = answer;
+    }
+
+    /*
     private Fib(Parcel parcel) {
         question = parcel.readString();
         //options = parcel.readStringArray();
-        answer = parcel.readInt();
+        answer = parcel.readIntArray();
     }
 
     public String getQuestion() {
@@ -58,5 +75,5 @@ public class Fib implements Parcelable{
             return new Mcq[i];
         }
 
-    };
+    };*/
 }
