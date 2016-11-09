@@ -2,6 +2,7 @@ package bphc.com.nirmaan.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.TextView;
 
 /**
  * Created by sarath on 30-10-2016.
@@ -10,11 +11,11 @@ import android.os.Parcelable;
 public class Fib {
 
     private String question;
-    private String[] answer;
+    private String[] answers;
 
-    public Fib(String question, String[] answer) {
+    public Fib(String question, String[] answers) {
         this.question = question;
-        this.answer = answer;
+        this.answers = answers;
     }
 
     public String getQuestion() {
@@ -25,15 +26,15 @@ public class Fib {
         this.question = question;
     }
 
-    public String[] getAnswer() {
-        return answer;
+    public String[] getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(String[] answer) {
-        this.answer = answer;
+    public void setAnswers(String[] answers) {
+        this.answers = answers;
     }
 
-    /*
+/*
     private Fib(Parcel parcel) {
         question = parcel.readString();
         //options = parcel.readStringArray();
@@ -76,4 +77,6 @@ public class Fib {
         }
 
     };*/
+
 }
+
