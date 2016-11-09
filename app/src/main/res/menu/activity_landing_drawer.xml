@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_class_schedule"
-            android:icon="@drawable/calendar_clock"
+            android:icon="@mipmap/ic_planner"
             android:title="Class Schedule" />
         <item
             android:id="@+id/nav_question_bank"
-            android:icon="@drawable/calendar_question"
+            android:icon="@mipmap/ic_questions"
             android:title="Question Bank" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/logout"
+            android:icon="@mipmap/ic_exit"
             android:title="Logout" />
     </group>
 

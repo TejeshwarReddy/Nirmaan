@@ -1,6 +1,6 @@
 package bphc.com.nirmaan;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import android.widget.EditText;
 import bphc.com.nirmaan.model.SignIn;
 import bphc.com.nirmaan.model.SignUp;
 import bphc.com.nirmaan.service.ApiManager;
-import bphc.com.nirmaan.service.BuildApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,15 +19,16 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     int in_up=0;
-    Button signin,signup,submit;
+    Button signin,signup,submit,skip;
     TextInputLayout input_username,input_password,input_retype,input_usertype;
     EditText username,password,retype,usertype;
-    BuildApi service;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        skip = (Button) findViewById(R.id.skip);
         signin = (Button) findViewById(R.id.signin);
         signup = (Button) findViewById(R.id.signup);
         submit = (Button) findViewById(R.id.sign_submit);
@@ -80,8 +80,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 input_retype.setVisibility(View.VISIBLE);
                 input_usertype.setVisibility(View.VISIBLE);
-                signup.setBackgroundColor(Color.CYAN);
-                signin.setBackgroundColor(Color.GRAY);
                 in_up = 1;
             }
         });
@@ -91,9 +89,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 input_retype.setVisibility(View.GONE);
                 input_usertype.setVisibility(View.GONE);
-                signup.setBackgroundColor(Color.GRAY);
-                signin.setBackgroundColor(Color.CYAN);
                 in_up = 0;
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,LandingActivity.class));
             }
         });
     }
