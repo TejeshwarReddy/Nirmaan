@@ -26,10 +26,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bphc.com.nirmaan.LoginActivity" />
         </activity>
+
         <activity
             android:name=".ScheduledDayStuffActivity"
             android:label="@string/title_activity_scheduled_day_stuff"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
