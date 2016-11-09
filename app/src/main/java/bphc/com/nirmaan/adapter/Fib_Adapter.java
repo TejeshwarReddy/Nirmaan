@@ -90,8 +90,10 @@ public class Fib_Adapter extends RecyclerView.Adapter<Fib_Adapter.FibViewHolder>
             containerLayoutParams.setMargins(0,0,0,0);
             answersContainer.setLayoutParams(containerLayoutParams);
 
+            // Setting the text:
+
             answerNumber.setText("Blank "+ (position + 1)+ ". ");
-            answer.setText(fib.getQuestion());
+            answer.setText(fib.getAnswers()[j]);
 
             answersContainer.addView(answerNumber);
             answersContainer.addView(answer);
