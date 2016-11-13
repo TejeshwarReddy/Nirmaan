@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import bphc.com.nirmaan.R;
@@ -33,15 +34,10 @@ public class TutorialClassAdapter extends
         TutorialClass tutorialClass = tutorialClasses[position];
 
         String date = tutorialClass.getDate();
-        String dayTime = tutorialClass.getDay() + ", " + tutorialClass.getTime();
-        String classSubject = Integer.toString(tutorialClass.getStandard()) +
-                ", " + tutorialClass.getSubject();
-        String topic = tutorialClass.getTopic();
+        String timeDay = tutorialClass.getTime() + ", " + tutorialClass.getDay();
 
         holder.tutorialDate.setText(date);
-        holder.tutorialDayTime.setText(dayTime);
-        holder.tutorialClassSubject.setText(classSubject);
-        holder.tutorialTopic.setText(topic);
+        holder.tutorialTimeDay.setText(timeDay);
     }
 
     @Override
@@ -52,16 +48,21 @@ public class TutorialClassAdapter extends
     class TutorialClassViewHolder extends RecyclerView.ViewHolder {
 
         TextView tutorialDate;
-        TextView tutorialDayTime;
-        TextView tutorialClassSubject;
-        TextView tutorialTopic;
+        TextView tutorialTimeDay;
+        ImageView tutorialDetails;
 
         TutorialClassViewHolder(View itemView) {
             super(itemView);
-            tutorialDate = (TextView) itemView.findViewById(R.id.tutorial_date);
-            tutorialDayTime = (TextView) itemView.findViewById(R.id.tutorial_day_time);
-            tutorialClassSubject = (TextView) itemView.findViewById(R.id.tutorial_class_subject);
-            tutorialTopic = (TextView) itemView.findViewById(R.id.tutorial_topic);
+            tutorialDate = (TextView) itemView.findViewById(R.id.tut_class_date);
+            tutorialTimeDay = (TextView) itemView.findViewById(R.id.tut_class_time_day);
+
+            tutorialDetails = (ImageView) itemView.findViewById(R.id.tut_class_detail);
+            tutorialDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO: Complete explicit intent for details view having study materials & questions
+                }
+            });
         }
     }
 }

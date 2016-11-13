@@ -10,40 +10,48 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutorial_date"/>
-
-        <View
-            style="@style/divider_specs"
-            android:layout_marginTop="@dimen/divider_spacing"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutorial_day_time"
-            android:layout_marginTop="@dimen/divider_spacing"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutorial_class_subject" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutorial_topic"/>
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:id="@+id/tut_content_intent"/>
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@color/dividerColor">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tut_class_date"
+                android:textSize="@dimen/tut_class_date"
+                android:textStyle="bold"
+                android:text="8th February, 1997"
+                android:textColor="@color/tut_class_row_ptext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tut_class_time_day"
+                android:textSize="@dimen/tut_class_time_day"
+                android:text="9:15 AM, Saturday"
+                android:textColor="@color/tut_class_row_stext"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tut_class_detail"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:clickable="true"/>
+        </LinearLayout>
 
     </LinearLayout>
-
 </android.support.v7.widget.CardView>
