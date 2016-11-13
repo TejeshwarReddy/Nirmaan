@@ -10,6 +10,8 @@
     <!--cardview in tutorial class date layout-->
     <dimen name="divider_spacing">8dp</dimen>
     <dimen name="tut_class_row_elem_spacing">8dp</dimen>
+    <dimen name="tut_class_date">32sp</dimen>
+    <dimen name="tut_class_time_day">24sp</dimen>
 
     <!--divider-->
     <dimen name="divider_height">2dp</dimen>
