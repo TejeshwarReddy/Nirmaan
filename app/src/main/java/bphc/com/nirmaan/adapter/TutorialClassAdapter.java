@@ -1,7 +1,6 @@
 package bphc.com.nirmaan.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,10 +34,10 @@ public class TutorialClassAdapter extends
         TutorialClass tutorialClass = tutorialClasses[position];
 
         String date = tutorialClass.getDate();
-        String dayTime = tutorialClass.getTime() + ", " + tutorialClass.getDay();
+        String timeDay = tutorialClass.getTime() + ", " + tutorialClass.getDay();
 
         holder.tutorialDate.setText(date);
-        holder.tutorialDayTime.setText(dayTime);
+        holder.tutorialTimeDay.setText(timeDay);
     }
 
     @Override
@@ -49,13 +48,13 @@ public class TutorialClassAdapter extends
     class TutorialClassViewHolder extends RecyclerView.ViewHolder {
 
         TextView tutorialDate;
-        TextView tutorialDayTime;
+        TextView tutorialTimeDay;
         ImageView tutorialDetails;
 
         TutorialClassViewHolder(View itemView) {
             super(itemView);
             tutorialDate = (TextView) itemView.findViewById(R.id.tut_class_date);
-            tutorialDayTime = (TextView) itemView.findViewById(R.id.tut_class_time_day);
+            tutorialTimeDay = (TextView) itemView.findViewById(R.id.tut_class_time_day);
 
             tutorialDetails = (ImageView) itemView.findViewById(R.id.tut_class_detail);
             tutorialDetails.setOnClickListener(new View.OnClickListener() {
