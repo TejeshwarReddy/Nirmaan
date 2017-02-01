@@ -1,6 +1,7 @@
 package bphc.com.nirmaan.service;
 
 import bphc.com.nirmaan.object.LoginSet;
+import bphc.com.nirmaan.object.UserData;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

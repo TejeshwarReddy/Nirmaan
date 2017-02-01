@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import bphc.com.nirmaan.app.Constants;
+import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.object.LoginSet;
 import bphc.com.nirmaan.service.ApiManager;
 import retrofit2.Call;
@@ -42,8 +45,17 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<LoginSet>() {
                     @Override
                     public void onResponse(Call<LoginSet> call, Response<LoginSet> response) {
-                        Toast.makeText(getApplicationContext(),response.body()+"",Toast.LENGTH_LONG).show();
-                        // Todo: save the credentials in Share Preferences here
+                        Toast.makeText(getApplicationContext(),response.body().getSuccess()+"",Toast.LENGTH_LONG).show();
+                        Log.e("Login",response.body().getSuccess()+"");
+                        if (response.body().getSuccess()==1){
+                            LoginPrefs.setPrefs(getApplicationContext(),
+                                    username.getText().toString(),
+                                    password.getText().toString(),
+                                    response.body().getSuccess(),
+                                    response.body().getPrivilege());
+                            startActivity(new Intent(LoginActivity.this,LandingActivity.class).putExtra(Constants.login_privilege,
+                                    LoginPrefs.getPrivilagePref(getApplicationContext())).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        }
                     }
 
                     @Override
