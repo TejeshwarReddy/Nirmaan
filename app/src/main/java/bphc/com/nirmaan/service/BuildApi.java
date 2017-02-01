@@ -1,12 +1,9 @@
 package bphc.com.nirmaan.service;
 
-import bphc.com.nirmaan.model.SignIn;
-import bphc.com.nirmaan.model.SignUp;
+import bphc.com.nirmaan.object.LoginSet;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by tejeshwar on 30/9/16.
@@ -14,17 +11,11 @@ import retrofit2.http.POST;
 
 public interface BuildApi {
 
-    @GET("test")
-    Call<String> testData();
+    @GET("login.php")
+    Call<LoginSet> authenticateUser(@Query("name") String name,
+                                    @Query("password") String password);
 
-    @FormUrlEncoded
-    @POST("signin")
-    Call<SignIn> authenticateUser(@Field("uname") String uname,
-                                  @Field("pwd") String password);
-
-    @FormUrlEncoded
-    @POST("signup")
-    Call<SignUp> registerUser(@Field("uname") String uname,
-                              @Field("pwd") String password,
-                              @Field("utype") String utype);
+    @GET("userdata.php")
+    Call<UserData> getUserdata(@Query("name") String name,
+                               @Query("password") String password);
 }

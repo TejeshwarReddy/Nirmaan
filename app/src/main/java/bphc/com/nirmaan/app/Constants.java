@@ -6,5 +6,5 @@ package bphc.com.nirmaan.app;
 
 public class Constants {
 
-    public static final String URL="http://172.16.34.179:8090/api/";
+    public static final String URL="http://172.16.113.191/nirmaan/";
 }

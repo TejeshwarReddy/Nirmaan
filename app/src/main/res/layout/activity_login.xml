@@ -40,34 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Button
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:id="@+id/signin"
-                    android:textColor="#000000"
-                    android:text="Sign In"
-                    android:background="#1AFFFFFF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
-                    android:background="@android:color/darker_gray"
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"/>
-                <Button
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:id="@+id/signup"
-                    android:textColor="#000000"
-                    android:text="Sign Up"
-                    android:background="#1AFFFFFF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_sign_username"
                 android:layout_margin="8dp"
@@ -76,8 +48,7 @@
                 <EditText
                     android:id="@+id/sign_username"
                     android:hint="Username"
-                    android:text ="121062"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColorHint="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -91,38 +62,7 @@
                 <EditText
                     android:id="@+id/sign_password"
                     android:hint="Password"
-                    android:text ="121062"
                     android:inputType="textWebPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_sign_retype_password"
-                android:visibility="gone"
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/sign_retype_password"
-                    android:hint="Re-type Password"
-                    android:text ="121062"
-                    android:inputType="textWebPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_sign_user_type"
-                android:visibility="gone"
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/sign_user_type"
-                    android:hint="User Type"
-                    android:text="Student"
-                    android:inputType="textAutoComplete"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </android.support.design.widget.TextInputLayout>

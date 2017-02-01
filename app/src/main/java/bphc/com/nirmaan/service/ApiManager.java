@@ -31,8 +31,4 @@ public class ApiManager {
     public BuildApi getService() {
         return buildApi;
     }
-
-    public BuildApi getService(String token){
-        return buildApi;
-    }
 }
