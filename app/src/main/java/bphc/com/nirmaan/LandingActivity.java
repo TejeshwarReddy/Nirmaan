@@ -10,17 +10,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import bphc.com.nirmaan.app.LoginPrefs;
+import bphc.com.nirmaan.database.DBTransactions;
+import bphc.com.nirmaan.object.Mcq;
 import bphc.com.nirmaan.service.FeedDataService;
+import io.realm.RealmResults;
 
 public class LandingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = "LandingActivity";
-
+    DBTransactions transactions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,11 @@ public class LandingActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
+        transactions = new DBTransactions(this);
+        RealmResults<Mcq> mcqs = transactions.getMcqs(1485948600000l);
+        for (int i=0;i<mcqs.size();i++){
+            Log.e(TAG,mcqs.get(i).getQuestion());
+        }
     }
 
     @Override

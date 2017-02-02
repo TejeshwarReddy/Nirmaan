@@ -1,5 +1,7 @@
 package bphc.com.nirmaan.database;
 
+import android.content.Context;
+
 import bphc.com.nirmaan.object.Blank;
 import bphc.com.nirmaan.object.Mcq;
 import bphc.com.nirmaan.object.Truefalse;
@@ -13,6 +15,9 @@ import io.realm.RealmResults;
 public class DBTransactions {
     private Realm realm;
 
+    public DBTransactions(Context context){
+        Realm.init(context);
+    }
     public RealmResults<Mcq> getMcqs(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(Mcq.class)
