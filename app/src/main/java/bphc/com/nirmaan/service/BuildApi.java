@@ -1,7 +1,10 @@
 package bphc.com.nirmaan.service;
 
+import java.util.List;
+
 import bphc.com.nirmaan.object.LoginSet;
 import bphc.com.nirmaan.object.Questions;
+import bphc.com.nirmaan.object.TutorialClass;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -19,4 +22,8 @@ public interface BuildApi {
     @GET("volunteer_questions.php")
     Call<Questions> getUserdata(@Query("name") String name,
                                 @Query("password") String password);
+
+    @GET("volunteer_schedule.php")
+    Call<List<TutorialClass>> getTutorialClasses(@Query("name") String username,
+                                                 @Query("password") String password);
 }

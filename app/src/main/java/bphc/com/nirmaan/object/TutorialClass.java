@@ -3,45 +3,36 @@ package bphc.com.nirmaan.object;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import bphc.com.nirmaan.model.Mcq;
+import io.realm.RealmObject;
 
-public class TutorialClass implements Parcelable{
+public class TutorialClass extends RealmObject implements Parcelable{
 
-    private GregorianCalendar dateTime;
+    @SerializedName("topic_id")
+    private int tutClassId;
+    @SerializedName("scheduled_visit")
+    private long dateTime;
+    @SerializedName("class")
     private int standard; // Class 1, Class2 and so on
     private String subject;
-    private String topic;
-    private int accepted; // used as a boolean
-    private ArrayList<Mcq> questions;
-    // TODO: Add ArrayList of studyMaterial object
-    //      so that they can be passed with intent to start detail activity
+    @SerializedName("chapter_number")
+    private String chapterNumber;
+    @SerializedName("chapter_name")
+    private String chapterName;
 
-    public TutorialClass(GregorianCalendar dateTime, int standard,
-                         String subject, String topic, Mcq[] questions) {
-        this.dateTime = dateTime;
-        this.standard = standard;
-        this.subject = subject;
-        this.topic = topic;
-        this.accepted = 0;
-        this.questions = (ArrayList<Mcq>) Arrays.asList(questions);
-    }
 
     private TutorialClass(Parcel input) {
-        long time = input.readLong();
-        dateTime = new GregorianCalendar();
-        dateTime.setTimeInMillis(time);
-
+        tutClassId = input.readInt();
+        dateTime = input.readLong();
         standard = input.readInt();
         subject = input.readString();
-        topic = input.readString();
-        accepted = input.readInt();
-        questions = input.readArrayList(Mcq.class.getClassLoader());
+        chapterNumber = input.readString();
+        chapterName = input.readString();
     }
 
 
@@ -49,9 +40,11 @@ public class TutorialClass implements Parcelable{
      * @return Date as String, pattern: 8 February, 1997
      */
     public String getDate() {
-        int dayOfMonth = dateTime.get(Calendar.DAY_OF_MONTH);
-        String month = dateTime.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
-        int year = dateTime.get(Calendar.YEAR);
+        GregorianCalendar calendar = getCalendar();
+
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+        int year = calendar.get(Calendar.YEAR);
         return Integer.toString(dayOfMonth) + " " + month + ", " + Integer.toString(year);
     }
 
@@ -59,17 +52,30 @@ public class TutorialClass implements Parcelable{
      * @return Day as String, pattern: Saturday
      */
     public String getDay() {
-        return dateTime.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
+        GregorianCalendar calendar =  getCalendar();
+        return calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
     }
 
     /**
      * @return Time as String, pattern: 9:15 AM
      */
     public String getTime() {
-        int hour = dateTime.get(Calendar.HOUR);
-        int minute = dateTime.get(Calendar.MINUTE);
-        String amPm = dateTime.getDisplayName(Calendar.AM_PM, Calendar.LONG, Locale.getDefault());
+        GregorianCalendar calendar = getCalendar();
+
+        int hour = calendar.get(Calendar.HOUR);
+        int minute = calendar.get(Calendar.MINUTE);
+        String amPm = calendar.getDisplayName(Calendar.AM_PM, Calendar.LONG, Locale.getDefault());
         return Integer.toString(hour) + ":" + Integer.toString(minute) + " " + amPm;
+    }
+
+    private GregorianCalendar getCalendar() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(dateTime);
+        return calendar;
+    }
+
+    public int getTutClassId() {
+        return tutClassId;
     }
 
     public int getStandard() {
@@ -80,8 +86,12 @@ public class TutorialClass implements Parcelable{
         return subject;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getChapterNumber() {
+        return chapterNumber;
+    }
+
+    public String getChapterName() {
+        return chapterName;
     }
 
     @Override
@@ -91,13 +101,12 @@ public class TutorialClass implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        long time = dateTime.getTimeInMillis();
-        dest.writeLong(time);
+        dest.writeInt(tutClassId);
+        dest.writeLong(dateTime);
         dest.writeInt(standard);
         dest.writeString(subject);
-        dest.writeString(topic);
-        dest.writeInt(accepted);
-        dest.writeList(questions);
+        dest.writeString(chapterNumber);
+        dest.writeString(chapterName);
     }
 
     public static final Creator<TutorialClass> CREATOR

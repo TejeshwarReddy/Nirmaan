@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.Mcq;
+import bphc.com.nirmaan.object.TutorialClass;
 import bphc.com.nirmaan.service.FeedDataService;
 import io.realm.RealmResults;
 
@@ -30,6 +31,12 @@ public class LandingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
         startService(new Intent(this, FeedDataService.class));
+
+        if (savedInstanceState == null) {
+            TutClassFragment fragment = new TutClassFragment();
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.container, fragment).commit();
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
