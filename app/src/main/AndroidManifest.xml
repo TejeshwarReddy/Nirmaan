@@ -32,6 +32,8 @@
             android:label="@string/title_activity_scheduled_day_stuff"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <service android:name=".service.FeedDataService"
+            android:enabled="true"/>
     </application>
 
 </manifest>

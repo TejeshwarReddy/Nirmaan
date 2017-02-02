@@ -29,6 +29,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (LoginPrefs.getSuccessPref(this)==1){
+            startActivity(new Intent(this, LandingActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            finish();
+        }
+
         skip = (Button) findViewById(R.id.skip);
         submit = (Button) findViewById(R.id.sign_submit);
 
@@ -55,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                     response.body().getPrivilege());
                             startActivity(new Intent(LoginActivity.this,LandingActivity.class).putExtra(Constants.login_privilege,
                                     LoginPrefs.getPrivilagePref(getApplicationContext())).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            finish();
                         }
                     }
 

@@ -13,13 +13,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import bphc.com.nirmaan.app.LoginPrefs;
+import bphc.com.nirmaan.service.FeedDataService;
+
 public class LandingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String TAG = "LandingActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+        startService(new Intent(this, FeedDataService.class));
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,6 +39,7 @@ public class LandingActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
+
     }
 
     @Override
@@ -84,8 +92,8 @@ public class LandingActivity extends AppCompatActivity
                 break;
             case R.id.nav_logout:
                 startActivity(new Intent(LandingActivity.this,LoginActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                LoginPrefs.setPrefs(this,null,null,-1,-1);
                 break;
         }
 

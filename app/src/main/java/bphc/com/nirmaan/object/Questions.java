@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
-public class UserData extends RealmObject{
+public class Questions extends RealmObject{
 
     @SerializedName("mcqs")
     @Expose
@@ -23,7 +23,7 @@ public class UserData extends RealmObject{
      * No args constructor for use in serialization
      * 
      */
-    public UserData() {
+    public Questions() {
     }
 
     /**
@@ -32,7 +32,7 @@ public class UserData extends RealmObject{
      * @param mcqs
      * @param truefalse
      */
-    public UserData(RealmList<Mcq> mcqs, RealmList<Blank> blanks, RealmList<Truefalse> truefalse) {
+    public Questions(RealmList<Mcq> mcqs, RealmList<Blank> blanks, RealmList<Truefalse> truefalse) {
         super();
         this.mcqs = mcqs;
         this.blanks = blanks;
