@@ -13,18 +13,24 @@ import io.realm.RealmResults;
 public class DBTransactions {
     private Realm realm;
 
-    public RealmResults<Mcq> getMcqs(){
+    public RealmResults<Mcq> getMcqs(long time){
         realm = Realm.getDefaultInstance();
-        return realm.where(Mcq.class).findAll();
+        return realm.where(Mcq.class)
+                .equalTo("scheduledVisit",time)
+                .findAll();
     }
 
-    public RealmResults<Blank> getBlanks(){
+    public RealmResults<Blank> getBlanks(long time){
         realm = Realm.getDefaultInstance();
-        return realm.where(Blank.class).findAll();
+        return realm.where(Blank.class)
+                .equalTo("scheduledVisit",time)
+                .findAll();
     }
 
-    public RealmResults<Truefalse> getTrueFalse(){
+    public RealmResults<Truefalse> getTrueFalse(long time){
         realm = Realm.getDefaultInstance();
-        return realm.where(Truefalse.class).findAll();
+        return realm.where(Truefalse.class)
+                .equalTo("scheduledVisit",time)
+                .findAll();
     }
 }
