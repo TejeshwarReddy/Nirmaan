@@ -1,9 +1,5 @@
 package bphc.com.nirmaan.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.widget.TextView;
-
 /**
  * Created by sarath on 30-10-2016.
  */
@@ -65,15 +61,15 @@ public class Fib {
         parcel.writeInt(answer);
     }
 
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator<Mcq>() {
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator<VolMcq>() {
         @Override
-        public Mcq createFromParcel(Parcel parcel) {
-            return new Mcq(parcel);
+        public VolMcq createFromParcel(Parcel parcel) {
+            return new VolMcq(parcel);
         }
 
         @Override
-        public Mcq[] newArray(int i) {
-            return new Mcq[i];
+        public VolMcq[] newArray(int i) {
+            return new VolMcq[i];
         }
 
     };*/

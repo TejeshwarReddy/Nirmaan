@@ -16,8 +16,8 @@ import android.view.MenuItem;
 
 import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.database.DBTransactions;
-import bphc.com.nirmaan.object.Mcq;
-import bphc.com.nirmaan.service.FeedDataService;
+import bphc.com.nirmaan.object.VolMcq;
+import bphc.com.nirmaan.service.FeedVolunteerDataService;
 import io.realm.RealmResults;
 
 public class LandingActivity extends AppCompatActivity
@@ -29,7 +29,7 @@ public class LandingActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-        startService(new Intent(this, FeedDataService.class));
+        startService(new Intent(this, FeedVolunteerDataService.class));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,9 +45,9 @@ public class LandingActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         transactions = new DBTransactions(this);
-        RealmResults<Mcq> mcqs = transactions.getMcqs(1485948600000l);
-        for (int i=0;i<mcqs.size();i++){
-            Log.e(TAG,mcqs.get(i).getQuestion());
+        RealmResults<VolMcq> volMcqs = transactions.getMcqs(1485948600000l);
+        for (int i = 0; i< volMcqs.size(); i++){
+            Log.e(TAG, volMcqs.get(i).getQuestion());
         }
     }
 
