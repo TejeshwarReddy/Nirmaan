@@ -8,10 +8,6 @@
             android:icon="@mipmap/ic_planner"
             android:title="Class Schedule" />
         <item
-            android:id="@+id/nav_question_bank"
-            android:icon="@mipmap/ic_questions"
-            android:title="Question Bank" />
-        <item
             android:id="@+id/nav_logout"
             android:icon="@mipmap/ic_exit"
             android:title="Logout" />

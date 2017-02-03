@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Blank extends RealmObject{
+public class StuBlank extends RealmObject{
 
     @PrimaryKey
     @SerializedName("id")
@@ -22,32 +22,27 @@ public class Blank extends RealmObject{
     @SerializedName("ans")
     @Expose
     private String ans;
-    @SerializedName("scheduled_visit")
-    @Expose
-    private long scheduledVisit;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public Blank() {
+    public StuBlank() {
     }
 
     /**
      * 
      * @param id
-     * @param scheduledVisit
      * @param topicId
      * @param question
      * @param ans
      */
-    public Blank(String id, String topicId, String question, String ans, long scheduledVisit) {
+    public StuBlank(String id, String topicId, String question, String ans) {
         super();
         this.id = id;
         this.topicId = topicId;
         this.question = question;
         this.ans = ans;
-        this.scheduledVisit = scheduledVisit;
     }
 
     public String getId() {
@@ -80,14 +75,6 @@ public class Blank extends RealmObject{
 
     public void setAns(String ans) {
         this.ans = ans;
-    }
-
-    public long getScheduledVisit() {
-        return scheduledVisit;
-    }
-
-    public void setScheduledVisit(long scheduledVisit) {
-        this.scheduledVisit = scheduledVisit;
     }
 
 }

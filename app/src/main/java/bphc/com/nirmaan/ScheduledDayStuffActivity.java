@@ -150,7 +150,7 @@ public class ScheduledDayStuffActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Study Material";
+                    return "Study StuMaterial";
                 case 1:
                     return "Exercises";
             }

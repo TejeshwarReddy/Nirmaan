@@ -50,7 +50,7 @@ public class Fib_Adapter extends RecyclerView.Adapter<Fib_Adapter.FibViewHolder>
 
     // answersLinearLayoutContainer is the ultimate container where views like:
     // answersContainer (a horizontal lin lay) which in turn contains two views:
-    // 1) Answer number (TextView) and 2) Answer Blank (anotherTextView) (for Volunteer).
+    // 1) Answer number (TextView) and 2) Answer VolBlank (anotherTextView) (for Volunteer).
     @Override
     public void onBindViewHolder(FibViewHolder holder, int position) {
         LinearLayout answersLinearLayoutContainer = holder.answersLinearLayoutContainer;
@@ -92,7 +92,7 @@ public class Fib_Adapter extends RecyclerView.Adapter<Fib_Adapter.FibViewHolder>
 
             // Setting the text:
 
-            answerNumber.setText("Blank "+ (position + 1)+ ". ");
+            answerNumber.setText("VolBlank "+ (position + 1)+ ". ");
             answer.setText(fib.getAnswers()[j]);
 
             answersContainer.addView(answerNumber);
