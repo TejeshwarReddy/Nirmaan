@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,36 +21,30 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuestionBankFrangment extends Fragment {
+public class QuestionBankActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Context context;
 
-    public QuestionBankFrangment() {
-
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_question_bank_frangment, container, false);
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        setContentView(R.layout.activity_question_bank);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new VolMCQFragment(), "MCQ");
         adapter.addFragment(new VolBlankFragment(), "FIB");
         adapter.addFragment(new VolTFFragment(), "TF");
         viewPager.setAdapter(adapter);
 
-        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
     }
+
+
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
