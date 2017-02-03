@@ -32,7 +32,7 @@ public class LandingActivity extends AppCompatActivity
         startService(new Intent(this, FeedVolunteerDataService.class));
 
         if (savedInstanceState == null) {
-            TutClassFragment fragment = new TutClassFragment();
+            VolScheduleFragment fragment = new VolScheduleFragment();
             getSupportFragmentManager().beginTransaction().replace(
                     R.id.container, fragment).commit();
         }
