@@ -42,9 +42,9 @@ public class QuestionBankFrangment extends Fragment {
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(new MCQFragment(), "MCQ");
-        adapter.addFragment(new FIBFragment(), "FIB");
-        adapter.addFragment(new TFFragment(), "TF");
+        adapter.addFragment(new VolMCQFragment(), "MCQ");
+        adapter.addFragment(new VolBlankFragment(), "FIB");
+        adapter.addFragment(new VolTFFragment(), "TF");
         viewPager.setAdapter(adapter);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);

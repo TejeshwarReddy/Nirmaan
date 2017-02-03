@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bphc.com.nirmaan.FIBFragment">
+    tools:context="bphc.com.nirmaan.VolBlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/fib_recycler_bank"
+        android:id="@+id/recycler_view_vol_blank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

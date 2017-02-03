@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:textSize="18dp"
-                    android:id="@+id/mcq_q_no"
+                    android:id="@+id/vol_blank_q_no"
                     android:textColor="@android:color/black"
                     android:text="10 "
                     android:layout_width="wrap_content"
@@ -39,42 +39,45 @@
                     android:paddingLeft="8dp"
                     android:textSize="18dp"
                     android:textColor="@android:color/black"
-                    android:text="What is your Name?"
+                    android:text="I am a ______ boy."
                     android:layout_width="match_parent"
-                    android:id="@+id/mcq_q_text"
+                    android:id="@+id/vol_blank_q_text"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <RadioGroup
+            <LinearLayout
+                android:id="@+id/fib_answers_linearLayout_container"
+                android:layout_marginTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mcq_q_radiogroup"
-                android:gravity="left"
-                android:paddingLeft="16dp"
-                android:layout_margin="4dp"
                 android:orientation="vertical">
 
-                <RadioButton
-                    android:text="@string/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
-                <RadioButton
-                    android:text="@string/app_name"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                    android:layout_margin="0dp">
 
-                <RadioButton
-                    android:text="@string/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ans."/>
 
-                <RadioButton
-                    android:text="@string/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/vol_blank_ans"
+                        android:layout_marginLeft="8dp"
+                        android:textSize="16dp"
+                        android:text="Good"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-            </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
