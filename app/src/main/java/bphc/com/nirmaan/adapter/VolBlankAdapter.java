@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import bphc.com.nirmaan.R;
 import bphc.com.nirmaan.object.VolBlank;
 import io.realm.RealmResults;
@@ -41,7 +39,7 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.FibVie
     @Override
     public FibViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_vol_fib_card, parent, false);
+                .inflate(R.layout.custom_vol_blank_card, parent, false);
         return new FibViewHolder(itemView);
     }
 
