@@ -26,14 +26,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bphc.com.nirmaan.LoginActivity" />
         </activity>
-
         <activity
             android:name=".ScheduledDayStuffActivity"
             android:label="@string/title_activity_scheduled_day_stuff"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <service android:name=".service.FeedDataService"
-            android:enabled="true"/>
+        <service
+            android:name=".service.FeedVolunteerDataService"
+            android:enabled="true" />
+        <service
+            android:name=".service.FeedStudentDataService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

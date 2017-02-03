@@ -15,9 +15,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.app.LoginPrefs;
-import bphc.com.nirmaan.object.TutorialClass;
 import bphc.com.nirmaan.service.BuildApi;
 import io.realm.Realm;
 import io.realm.RealmResults;
