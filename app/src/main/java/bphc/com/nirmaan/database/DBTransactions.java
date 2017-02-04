@@ -20,6 +20,7 @@ public class DBTransactions {
     public DBTransactions(Context context){
         Realm.init(context);
     }
+
     public RealmResults<VolMcq> getMcqs(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolMcq.class)

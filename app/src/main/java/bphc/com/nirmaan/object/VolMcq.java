@@ -36,17 +36,17 @@ public class VolMcq extends RealmObject{
     private String ans;
     @SerializedName("scheduled_visit")
     @Expose
-    private long scheduledVisit;
+    private Long scheduledVisit;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public VolMcq() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param scheduledVisit
      * @param d
@@ -57,7 +57,7 @@ public class VolMcq extends RealmObject{
      * @param question
      * @param ans
      */
-    public VolMcq(String id, String topicId, String question, String a, String b, String c, String d, String ans, long scheduledVisit) {
+    public VolMcq(String id, String topicId, String question, String a, String b, String c, String d, String ans, Long scheduledVisit) {
         super();
         this.id = id;
         this.topicId = topicId;
@@ -134,11 +134,11 @@ public class VolMcq extends RealmObject{
         this.ans = ans;
     }
 
-    public long getScheduledVisit() {
+    public Long getScheduledVisit() {
         return scheduledVisit;
     }
 
-    public void setScheduledVisit(long scheduledVisit) {
+    public void setScheduledVisit(Long scheduledVisit) {
         this.scheduledVisit = scheduledVisit;
     }
 

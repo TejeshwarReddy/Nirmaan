@@ -98,12 +98,6 @@ public class LandingActivity extends AppCompatActivity
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch(id){
             case R.id.nav_class_schedule:
-
-                break;
-            case R.id.nav_question_bank:
-                fragment = new QuestionBankFrangment();
-                transaction.replace(R.id.content_landing,fragment);
-                transaction.commit();
                 break;
             case R.id.nav_logout:
                 startActivity(new Intent(LandingActivity.this,LoginActivity.class)

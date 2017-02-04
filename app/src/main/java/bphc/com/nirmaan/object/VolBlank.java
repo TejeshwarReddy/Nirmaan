@@ -24,24 +24,24 @@ public class VolBlank extends RealmObject{
     private String ans;
     @SerializedName("scheduled_visit")
     @Expose
-    private long scheduledVisit;
+    private Long scheduledVisit;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public VolBlank() {
     }
 
     /**
-     * 
+     *
      * @param id
      * @param scheduledVisit
      * @param topicId
      * @param question
      * @param ans
      */
-    public VolBlank(String id, String topicId, String question, String ans, long scheduledVisit) {
+    public VolBlank(String id, String topicId, String question, String ans, Long scheduledVisit) {
         super();
         this.id = id;
         this.topicId = topicId;
@@ -82,12 +82,13 @@ public class VolBlank extends RealmObject{
         this.ans = ans;
     }
 
-    public long getScheduledVisit() {
+    public Long getScheduledVisit() {
         return scheduledVisit;
     }
 
-    public void setScheduledVisit(long scheduledVisit) {
+    public void setScheduledVisit(Long scheduledVisit) {
         this.scheduledVisit = scheduledVisit;
     }
+
 
 }

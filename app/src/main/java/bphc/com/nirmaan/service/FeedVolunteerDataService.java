@@ -46,15 +46,11 @@ public class FeedVolunteerDataService extends IntentService {
                 final RealmList<VolMcq> volMcqs = response.body().getVolMcqs();
                 final RealmList<VolBlank> volBlanks = response.body().getVolBlanks();
                 final RealmList<VolTruefalse> volTruefalses = response.body().getVolTruefalse();
-                if (volMcqs.size() != 0) {
-                    realm.copyToRealmOrUpdate(volMcqs);
-                }
-                if (volBlanks.size() != 0){
-                    realm.copyToRealmOrUpdate(volBlanks);
-                }
-                if (volTruefalses.size() != 0){
-                    realm.copyToRealmOrUpdate(volTruefalses);
-                }
+
+                realm.copyToRealmOrUpdate(volMcqs);
+                realm.copyToRealmOrUpdate(volBlanks);
+                realm.copyToRealmOrUpdate(volTruefalses);
+
                 realm.commitTransaction();
                 RealmResults<VolMcq> mcqs1 = realm.where(VolMcq.class).findAll();
                 if (mcqs1.size()!=0) {
@@ -78,9 +74,9 @@ public class FeedVolunteerDataService extends IntentService {
                 Realm realm = Realm.getDefaultInstance();
                 realm.beginTransaction();
                 RealmList<VolSchedule> volSchedules = response.body().getVolSchedule();
-                if (volSchedules.size()!=0){
-                    realm.copyToRealmOrUpdate(volSchedules);
-                }
+
+                realm.copyToRealmOrUpdate(volSchedules);
+
                 realm.commitTransaction();
             }
 

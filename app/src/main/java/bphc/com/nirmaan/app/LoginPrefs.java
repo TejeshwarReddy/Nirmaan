@@ -22,11 +22,11 @@ public class LoginPrefs {
     }
 
     public static String getNamePref(Context context) {
-        return getPrefs(context).getString(Constants.login_name, null);
+        return getPrefs(context).getString(Constants.login_name, "");
     }
 
     public static String getPasswordPref(Context context) {
-        return getPrefs(context).getString(Constants.login_password, null);
+        return getPrefs(context).getString(Constants.login_password, "");
     }
 
     public static void setPrefs(Context context, String name, String password, long success, long privilage) {
