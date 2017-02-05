@@ -2,9 +2,11 @@ package bphc.com.nirmaan.database;
 
 import android.content.Context;
 
+import bphc.com.nirmaan.object.StuBlank;
 import bphc.com.nirmaan.object.StuMaterial;
 import bphc.com.nirmaan.object.StuMcq;
 import bphc.com.nirmaan.object.StuTopicCount;
+import bphc.com.nirmaan.object.StuTruefalse;
 import bphc.com.nirmaan.object.VolBlank;
 import bphc.com.nirmaan.object.VolMcq;
 import bphc.com.nirmaan.object.VolSchedule;
@@ -64,6 +66,22 @@ public class DBTransactions {
     public RealmResults<StuMcq> getStuMcqs(String subject,int topicid){
         realm = Realm.getDefaultInstance();
         return realm.where(StuMcq.class)
+                .equalTo("subject",subject)
+                .equalTo("topic_id",topicid)
+                .findAll();
+    }
+
+    public RealmResults<StuBlank> getStuBlanks(String subject,int topicid){
+        realm = Realm.getDefaultInstance();
+        return realm.where(StuBlank.class)
+                .equalTo("subject",subject)
+                .equalTo("topic_id",topicid)
+                .findAll();
+    }
+
+    public RealmResults<StuTruefalse> getStuTrueFalse(String subject,int topicid){
+        realm = Realm.getDefaultInstance();
+        return realm.where(StuTruefalse.class)
                 .equalTo("subject",subject)
                 .equalTo("topic_id",topicid)
                 .findAll();

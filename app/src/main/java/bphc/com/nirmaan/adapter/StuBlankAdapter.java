@@ -30,9 +30,9 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
     }
 
     class StuBlankViewHolder extends RecyclerView.ViewHolder {
-        TextView question, q_no;
+        TextView question, q_no, correctAns;
         EditText ans;
-        LinearLayout answersLinearLayoutContainer;
+        LinearLayout answerDropDown;
         ImageView correct, wrong;
         Button submit;
 
@@ -41,10 +41,11 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
             q_no = (TextView) itemView.findViewById(R.id.stu_blank_q_no);
             question = (TextView) itemView.findViewById(R.id.stu_blank_q_text);
             ans = (EditText) itemView.findViewById(R.id.stu_blank_ans);
-            answersLinearLayoutContainer = (LinearLayout) itemView.findViewById(R.id.fib_answers_linearLayout_container);
             correct = (ImageView) itemView.findViewById(R.id.stu_blank_correct);
+            correctAns = (TextView) itemView.findViewById(R.id.stu_blank_correct_ans);
             wrong = (ImageView) itemView.findViewById(R.id.stu_blank_wrong);
             submit = (Button) itemView.findViewById(R.id.stu_blank_submit);
+            answerDropDown= (LinearLayout) itemView.findViewById(R.id.stu_blank_drop_down_lin_layout);
         }
 
     }
@@ -74,7 +75,7 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(view.hasFocus()){
-                    holder.submit.setVisibility(View.VISIBLE);
+                    holder.answerDropDown.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -82,11 +83,22 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
             @Override
             public void onClick(View view) {
                 if(holder.ans.getText().toString().equals(blank.getAns())){
+                        // for right
+
+                    // display correct image; diaplay drop-down
+                    //
                     holder.correct.setVisibility(View.VISIBLE);
                 }
-                else{
+                else{   // for wrong
 
+                    // display wrong image; visible the drop-down;
+                    // set correct answer in the text view.
+                    // visible the correct answer.
+
+                    holder.correctAns.setText("Correct answer is: "+ blank.getAns());
                     holder.wrong.setVisibility(View.VISIBLE);
+                    holder.answerDropDown.setVisibility(View.VISIBLE);
+                    holder.correctAns.setVisibility(View.VISIBLE);
                 }
                 holder.submit.setVisibility(View.GONE);
             }
