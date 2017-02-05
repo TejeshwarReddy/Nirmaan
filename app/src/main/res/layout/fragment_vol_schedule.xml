@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="bphc.com.nirmaan.VolScheduleFragment">
+    tools:context="bphc.com.nirmaan.VolScheduleFragment"
+    android:layout_marginBottom="8dp">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/vol_schedule_container">
-    </LinearLayout>
+        android:id="@+id/vol_schedule_container"/>
 
 </ScrollView>
