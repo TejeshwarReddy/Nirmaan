@@ -1,20 +1,16 @@
 package bphc.com.nirmaan;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.List;
 
-import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.VolSchedule;
 
@@ -49,7 +45,7 @@ public class VolScheduleFragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(view.getContext());
         List<VolSchedule> schedules = mTransactions.getSchedule();
 
-        for (final VolSchedule schedule : schedules){
+/*        for (final VolSchedule schedule : schedules){
             View scheduleView = inflater.inflate(R.layout.vol_schedule_row, mTutClassContainer);
 
             TextView date = (TextView) view.findViewById(R.id.vol_schedule_date);
@@ -66,7 +62,7 @@ public class VolScheduleFragment extends Fragment {
                    startActivity(new Intent(getActivity(),QuestionBankActivity.class).putExtra(Constants.KEY_VOLUNTEER_TIME,schedule.getScheduledVisit()));
                 }
             });
-        }
+        }*/
     }
 
 

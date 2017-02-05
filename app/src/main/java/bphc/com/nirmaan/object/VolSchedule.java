@@ -3,12 +3,7 @@ package bphc.com.nirmaan.object;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 public class VolSchedule extends RealmObject{
@@ -35,16 +30,11 @@ public class VolSchedule extends RealmObject{
     @SerializedName("reference")
     @Expose
     private String reference;
-    @Ignore
-    private GregorianCalendar mCalendar;
-
     /**
      * No args constructor for use in serialization
      * 
      */
     public VolSchedule() {
-        mCalendar = new GregorianCalendar();
-        mCalendar.setTimeInMillis(scheduledVisit);
     }
 
     /**
@@ -78,34 +68,6 @@ public class VolSchedule extends RealmObject{
 
     public Long getScheduledVisit() {
         return scheduledVisit;
-    }
-
-    /**
-     * @return Date as String, pattern: 8 February, 1997
-     */
-    public String getDate() {
-        int dayOfMonth = mCalendar.get(Calendar.DAY_OF_MONTH);
-        String month = mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
-        int year = mCalendar.get(Calendar.YEAR);
-        return Integer.toString(dayOfMonth) + " " + month + ", " + Integer.toString(year);
-    }
-
-    /**
-     * @return Day as String, pattern: Saturday
-     */
-    public String getDay() {
-        return mCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
-    }
-
-    /**
-     * @return Time as String, pattern: 9:15 AM
-     */
-    public String getTime() {
-
-        int hour = mCalendar.get(Calendar.HOUR);
-        int minute = mCalendar.get(Calendar.MINUTE);
-        String amPm = mCalendar.getDisplayName(Calendar.AM_PM, Calendar.LONG, Locale.getDefault());
-        return Integer.toString(hour) + ":" + Integer.toString(minute) + " " + amPm;
     }
 
     public void setScheduledVisit(Long scheduledVisit) {

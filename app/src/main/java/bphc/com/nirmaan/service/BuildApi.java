@@ -1,7 +1,5 @@
 package bphc.com.nirmaan.service;
 
-import java.util.List;
-
 import bphc.com.nirmaan.object.LoginSet;
 import bphc.com.nirmaan.object.StudentData;
 import bphc.com.nirmaan.object.VolQuestions;

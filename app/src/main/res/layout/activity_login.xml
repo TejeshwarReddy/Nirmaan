@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:text="f2014261"
                     android:id="@+id/sign_username"
                     android:hint="Username"
                     android:inputType="text"
@@ -60,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:text="dinesh"
                     android:id="@+id/sign_password"
                     android:hint="Password"
                     android:inputType="textWebPassword"

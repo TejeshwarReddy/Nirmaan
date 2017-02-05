@@ -4,18 +4,19 @@ package bphc.com.nirmaan.object;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 import io.realm.RealmList;
-import io.realm.RealmObject;
 
-public class VolQuestions extends RealmObject{
+public class VolQuestions {
 
-    @SerializedName("volMcqs")
+    @SerializedName("mcqs")
     @Expose
-    private RealmList<VolMcq> volMcqs = null;
-    @SerializedName("volBlanks")
+    private List<VolMcq> volMcqs = null;
+    @SerializedName("blanks")
     @Expose
     private RealmList<VolBlank> volBlanks = null;
-    @SerializedName("volTruefalse")
+    @SerializedName("truefalse")
     @Expose
     private RealmList<VolTruefalse> volTruefalse = null;
 
@@ -32,18 +33,18 @@ public class VolQuestions extends RealmObject{
      * @param volMcqs
      * @param volTruefalse
      */
-    public VolQuestions(RealmList<VolMcq> volMcqs, RealmList<VolBlank> volBlanks, RealmList<VolTruefalse> volTruefalse) {
+    public VolQuestions(List<VolMcq> volMcqs, RealmList<VolBlank> volBlanks, RealmList<VolTruefalse> volTruefalse) {
         super();
         this.volMcqs = volMcqs;
         this.volBlanks = volBlanks;
         this.volTruefalse = volTruefalse;
     }
 
-    public RealmList<VolMcq> getVolMcqs() {
+    public List<VolMcq> getVolMcqs() {
         return volMcqs;
     }
 
-    public void setVolMcqs(RealmList<VolMcq> volMcqs) {
+    public void setVolMcqs(List<VolMcq> volMcqs) {
         this.volMcqs = volMcqs;
     }
 

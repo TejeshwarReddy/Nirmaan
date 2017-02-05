@@ -11,7 +11,7 @@ import io.realm.RealmList;
 
 public class VolScheduleCollections {
 
-    @SerializedName("volSchedule")
+    @SerializedName("schedule")
     @Expose
     private RealmList<VolSchedule> volSchedule = null;
 
