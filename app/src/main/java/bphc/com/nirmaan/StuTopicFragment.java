@@ -37,7 +37,7 @@ public class StuTopicFragment extends DialogFragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mTopicContainer = (RecyclerView) view.findViewById(R.id.stu_topic_container);
-        List<StuTopicCount> topics = new DBTransactions(getActivity()).getTopics();
+        List<StuTopicCount> topics = new DBTransactions(getActivity()).getStuTopics();
         StuTopicAdapter adapter = new StuTopicAdapter(topics, this);
         mTopicContainer.setAdapter(adapter);
         mTopicContainer.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -1,6 +1,5 @@
 package bphc.com.nirmaan;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,7 +42,7 @@ public class StuSubjectFragment extends Fragment implements
         mTransactions = new DBTransactions(getContext());
         mRecyclerView = (RecyclerView) view.findViewById(R.id.stu_subject_container);
 
-        mSubjectMaterials = mTransactions.getMaterial();
+        mSubjectMaterials = mTransactions.getStuMaterial();
         mAdapter = new StuSubjectAdapter(mSubjectMaterials, this);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

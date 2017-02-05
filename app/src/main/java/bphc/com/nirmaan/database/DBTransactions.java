@@ -50,12 +50,12 @@ public class DBTransactions {
                 .findAll();
     }
 
-    public RealmResults<StuMaterial> getMaterial(){
+    public RealmResults<StuMaterial> getStuMaterial(){
         realm = Realm.getDefaultInstance();
         return realm.where(StuMaterial.class).distinct("subject");
     }
 
-    public RealmResults<StuTopicCount> getTopics(){
+    public RealmResults<StuTopicCount> getStuTopics(){
         realm = Realm.getDefaultInstance();
         return realm.where(StuTopicCount.class)
                 .findAll();
