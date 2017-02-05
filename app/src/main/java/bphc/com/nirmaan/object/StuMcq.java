@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 public class StuMcq extends RealmObject{
-    
+
     @PrimaryKey
     @SerializedName("id")
     @Expose
@@ -34,6 +34,9 @@ public class StuMcq extends RealmObject{
     @SerializedName("ans")
     @Expose
     private String ans;
+    @SerializedName("subject")
+    @Expose
+    private String subject;
 
     /**
      * No args constructor for use in serialization
@@ -48,12 +51,13 @@ public class StuMcq extends RealmObject{
      * @param d
      * @param b
      * @param c
+     * @param subject
      * @param a
      * @param topicId
      * @param question
      * @param ans
      */
-    public StuMcq(String id, String topicId, String question, String a, String b, String c, String d, String ans) {
+    public StuMcq(String id, String topicId, String question, String a, String b, String c, String d, String ans, String subject) {
         super();
         this.id = id;
         this.topicId = topicId;
@@ -63,6 +67,7 @@ public class StuMcq extends RealmObject{
         this.c = c;
         this.d = d;
         this.ans = ans;
+        this.subject = subject;
     }
 
     public String getId() {
@@ -127,6 +132,14 @@ public class StuMcq extends RealmObject{
 
     public void setAns(String ans) {
         this.ans = ans;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
 }

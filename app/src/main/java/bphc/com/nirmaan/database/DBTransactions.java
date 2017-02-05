@@ -3,6 +3,7 @@ package bphc.com.nirmaan.database;
 import android.content.Context;
 
 import bphc.com.nirmaan.object.StuMaterial;
+import bphc.com.nirmaan.object.StuTopicCount;
 import bphc.com.nirmaan.object.VolBlank;
 import bphc.com.nirmaan.object.VolMcq;
 import bphc.com.nirmaan.object.VolSchedule;
@@ -54,4 +55,9 @@ public class DBTransactions {
     }
 
     /* Todo there is no topic id for each subject should figure it out*/
+
+    public RealmResults<StuTopicCount> getTopics(){
+        realm = Realm.getDefaultInstance();
+        return realm.where(StuTopicCount.class).findAll();
+    }
 }

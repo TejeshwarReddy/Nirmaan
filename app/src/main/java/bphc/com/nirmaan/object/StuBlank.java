@@ -22,6 +22,9 @@ public class StuBlank extends RealmObject{
     @SerializedName("ans")
     @Expose
     private String ans;
+    @SerializedName("subject")
+    @Expose
+    private String subject;
 
     /**
      * No args constructor for use in serialization
@@ -33,16 +36,18 @@ public class StuBlank extends RealmObject{
     /**
      * 
      * @param id
+     * @param subject
      * @param topicId
      * @param question
      * @param ans
      */
-    public StuBlank(String id, String topicId, String question, String ans) {
+    public StuBlank(String id, String topicId, String question, String ans, String subject) {
         super();
         this.id = id;
         this.topicId = topicId;
         this.question = question;
         this.ans = ans;
+        this.subject = subject;
     }
 
     public String getId() {
@@ -75,6 +80,14 @@ public class StuBlank extends RealmObject{
 
     public void setAns(String ans) {
         this.ans = ans;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
 }
