@@ -3,6 +3,8 @@ package bphc.com.nirmaan.database;
 import android.content.Context;
 
 import bphc.com.nirmaan.object.StuMaterial;
+import bphc.com.nirmaan.object.StuMcq;
+import bphc.com.nirmaan.object.StuTopicCount;
 import bphc.com.nirmaan.object.VolBlank;
 import bphc.com.nirmaan.object.VolMcq;
 import bphc.com.nirmaan.object.VolSchedule;
@@ -21,28 +23,28 @@ public class DBTransactions {
         Realm.init(context);
     }
 
-    public RealmResults<VolMcq> getMcqs(long time){
+    public RealmResults<VolMcq> getVolMcqs(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolMcq.class)
                 .equalTo("scheduledVisit",time)
                 .findAll();
     }
 
-    public RealmResults<VolBlank> getBlanks(long time){
+    public RealmResults<VolBlank> getVolBlanks(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolBlank.class)
                 .equalTo("scheduledVisit",time)
                 .findAll();
     }
 
-    public RealmResults<VolTruefalse> getTrueFalse(long time){
+    public RealmResults<VolTruefalse> getVolTrueFalse(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolTruefalse.class)
                 .equalTo("scheduledVisit",time)
                 .findAll();
     }
 
-    public RealmResults<VolSchedule> getSchedule(){
+    public RealmResults<VolSchedule> getVolSchedule(){
         realm = Realm.getDefaultInstance();
         return realm.where(VolSchedule.class)
                 .findAll();
@@ -53,5 +55,17 @@ public class DBTransactions {
         return realm.where(StuMaterial.class).distinct("subject");
     }
 
-    /* Todo there is no topic id for each subject should figure it out*/
+    public RealmResults<StuTopicCount> getTopics(){
+        realm = Realm.getDefaultInstance();
+        return realm.where(StuTopicCount.class)
+                .findAll();
+    }
+
+    public RealmResults<StuMcq> getStuMcqs(String subject,int topicid){
+        realm = Realm.getDefaultInstance();
+        return realm.where(StuMcq.class)
+                .equalTo("subject",subject)
+                .equalTo("topic_id",topicid)
+                .findAll();
+    }
 }

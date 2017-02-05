@@ -8,8 +8,8 @@ import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.object.StuBlank;
 import bphc.com.nirmaan.object.StuMaterial;
 import bphc.com.nirmaan.object.StuMcq;
+import bphc.com.nirmaan.object.StuQuestions;
 import bphc.com.nirmaan.object.StuTruefalse;
-import bphc.com.nirmaan.object.StudentData;
 import io.realm.Realm;
 import io.realm.RealmList;
 import retrofit2.Call;
@@ -27,18 +27,18 @@ public class FeedStudentDataService extends IntentService {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
 
-        Call<StudentData> studentDataCall = ApiManager.getInstance().getService().getStudentData(
+        Call<StuQuestions> studentDataCall = ApiManager.getInstance().getService().getStudentData(
                 LoginPrefs.getNamePref(this),
                 LoginPrefs.getPasswordPref(this));
 
-        studentDataCall.enqueue(new Callback<StudentData>() {
+        studentDataCall.enqueue(new Callback<StuQuestions>() {
             @Override
-            public void onResponse(Call<StudentData> call, Response<StudentData> response) {
+            public void onResponse(Call<StuQuestions> call, Response<StuQuestions> response) {
                 Realm realm = Realm.getDefaultInstance();
                 realm.beginTransaction();
-                final RealmList<StuMcq> stuMcqs = response.body().getStuMcqs();
-                final RealmList<StuBlank> stuBlanks = response.body().getStuBlanks();
-                final RealmList<StuTruefalse> stuTruefalses = response.body().getStuTruefalse();
+                final RealmList<StuMcq> stuMcqs = response.body().getMcqs();
+                final RealmList<StuBlank> stuBlanks = response.body().getBlanks();
+                final RealmList<StuTruefalse> stuTruefalses = response.body().getTruefalse();
                 final RealmList<StuMaterial> stuMaterials = response.body().getMaterial();
                 if (stuMcqs.size() != 0) {
                     realm.copyToRealmOrUpdate(stuMcqs);
@@ -56,7 +56,7 @@ public class FeedStudentDataService extends IntentService {
             }
 
             @Override
-            public void onFailure(Call<StudentData> call, Throwable t) {
+            public void onFailure(Call<StuQuestions> call, Throwable t) {
                 Toast.makeText(FeedStudentDataService.this,"Check Internet Connection",Toast.LENGTH_LONG).show();
             }
         });

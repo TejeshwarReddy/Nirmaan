@@ -46,7 +46,7 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.VolBla
 
     // answersLinearLayoutContainer is the ultimate container where views like:
     // answersContainer (a horizontal lin lay) which in turn contains two views:
-    // 1) Answer number (TextView) and 2) Answer Blank (anotherTextView) (for Volunteer).
+    // 1) Answer number (TextView) and 2) Answer StuBlank (anotherTextView) (for Volunteer).
     @Override
     public void onBindViewHolder(VolBlankViewHolder holder, int position) {
         //LinearLayout answersLinearLayoutContainer = holder.answersLinearLayoutContainer;

@@ -34,7 +34,7 @@ public class VolMCQFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         mcqList = new DBTransactions(getActivity())
-                .getMcqs(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+                .getVolMcqs(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vol_mcq, container, false);
     }

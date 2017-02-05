@@ -34,9 +34,9 @@ public class VolBlankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Get the Realm Blank object from the database!
+        // Get the Realm StuBlank object from the database!
         blanks = new DBTransactions(getActivity())
-                .getBlanks(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+                .getVolBlanks(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vol_blank, container, false);

@@ -23,6 +23,7 @@ public class LandingActivity extends AppCompatActivity
     public static final String TAG = "LandingActivity";
     DBTransactions transactions;
     DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class LandingActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         transactions = new DBTransactions(this);
-        RealmResults<VolMcq> volMcqs = transactions.getMcqs(1486073208000l);
+        RealmResults<VolMcq> volMcqs = transactions.getVolMcqs(1486073208000l);
         for (int i = 0; i< volMcqs.size(); i++){
             Log.e(TAG, volMcqs.get(i).getQuestion());
         }

@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="4dp"
+    android:id="@+id/card_schedule"
     android:layout_marginEnd="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginStart="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginTop="16dp">
 
     <LinearLayout
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,41 +30,42 @@
                 android:showDividers="middle">
 
                 <TextView
+                    android:paddingBottom="4dp"
                     android:id="@+id/vol_schedule_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="8th February, 1997"
                     android:textColor="@color/tut_class_row_ptext"
-                    android:textSize="@dimen/tut_class_date"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tut_class_time_day"
+                    android:id="@+id/vol_schedule_time_day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="9:15 AM, Saturday"
                     android:textColor="@color/tut_class_row_stext"
-                    android:textSize="@dimen/tut_class_time_day" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1">
+                android:gravity="end">
 
                 <ImageView
+                    android:background="@android:color/white"
                     android:id="@+id/vol_schedule_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <View
+        <!--<View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -91,7 +93,7 @@
                 android:layout_weight="1"
                 android:text="Decline"/>
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 

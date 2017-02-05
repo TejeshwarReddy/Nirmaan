@@ -1,34 +1,51 @@
 package bphc.com.nirmaan;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
+import bphc.com.nirmaan.adapter.VolScheduleAdapter;
+import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.VolSchedule;
 
 
-public class VolScheduleFragment extends Fragment {
+public class VolScheduleFragment extends Fragment
+        implements VolScheduleAdapter.VolScheduleClickListener{
 
+    private RecyclerView mVolScheduleContainer;
 
-    private LinearLayout mTutClassContainer;
+    private GregorianCalendar mCalendar;
 
     private DBTransactions mTransactions;
+    private VolScheduleAdapter mAdapter;
 
     public VolScheduleFragment() {
     }
+
+    //TODO: Implement a broadcast receiver so that when network request is complete, the view gets
+    // populated automatically after closing progress dialog.
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTransactions = new DBTransactions(getActivity());
+        mCalendar = new GregorianCalendar();
     }
 
     @Override
@@ -40,31 +57,21 @@ public class VolScheduleFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mTutClassContainer = (LinearLayout) view.findViewById(R.id.vol_schedule_container);
+        mVolScheduleContainer = (RecyclerView) view.findViewById(R.id.vol_schedule_container);
 
         LayoutInflater inflater = LayoutInflater.from(view.getContext());
-        List<VolSchedule> schedules = mTransactions.getSchedule();
+        List<VolSchedule> schedules = mTransactions.getVolSchedule();
+        mAdapter = new VolScheduleAdapter(schedules, this);
+        mVolScheduleContainer.setAdapter(mAdapter);
+        mVolScheduleContainer.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-/*        for (final VolSchedule schedule : schedules){
-            View scheduleView = inflater.inflate(R.layout.vol_schedule_row, mTutClassContainer);
-
-            TextView date = (TextView) view.findViewById(R.id.vol_schedule_date);
-            date.setText(schedule.getDate());
-
-            TextView time_day = (TextView) view.findViewById(R.id.vol_schedule_accept);
-            time_day.setText(schedule.getTime() + ", " + schedule.getDay());
-
-            ImageView detail = (ImageView) view.findViewById(R.id.vol_schedule_detail);
-            detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //TODO: Complete the intent
-                   startActivity(new Intent(getActivity(),QuestionBankActivity.class).putExtra(Constants.KEY_VOLUNTEER_TIME,schedule.getScheduledVisit()));
-                }
-            });
-        }*/
     }
 
-
-
+    @Override
+    public void onClick(Long scheduleVisit) {
+        Intent intent = new Intent(getActivity(), QuestionBankActivity.class);
+        intent.putExtra(
+                Constants.KEY_VOLUNTEER_TIME, scheduleVisit);
+        startActivity(intent);
+    }
 }
