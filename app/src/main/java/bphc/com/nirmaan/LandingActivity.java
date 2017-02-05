@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.VolMcq;
+import bphc.com.nirmaan.service.FeedStudentDataService;
 import bphc.com.nirmaan.service.FeedVolunteerDataService;
 import io.realm.RealmResults;
 
@@ -28,12 +29,20 @@ public class LandingActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-        startService(new Intent(this, FeedVolunteerDataService.class));
 
-        if (savedInstanceState == null) {
-            VolScheduleFragment fragment = new VolScheduleFragment();
-            getSupportFragmentManager().beginTransaction().replace(
-                    R.id.container, fragment).commit();
+        int priviledge = (int) LoginPrefs.getPrivilagePref(this);
+        switch (priviledge) {
+            case 0:
+                // TODO: start service for course creator
+                break;
+            case 1:
+                setVolunteerUi(savedInstanceState);
+                break;
+            case 2:
+                setStudentUi(savedInstanceState);
+                break;
+            default:
+                throw new UnknownError("'" + priviledge + "'" + " priviledge is not permissible.");
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,6 +62,24 @@ public class LandingActivity extends AppCompatActivity
         RealmResults<VolMcq> volMcqs = transactions.getVolMcqs(1486073208000l);
         for (int i = 0; i< volMcqs.size(); i++){
             Log.e(TAG, volMcqs.get(i).getQuestion());
+        }
+    }
+
+    private void setVolunteerUi(Bundle savedInstanceState) {
+        startService(new Intent(this, FeedVolunteerDataService.class));
+        if (savedInstanceState == null) {
+            VolScheduleFragment fragment = new VolScheduleFragment();
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.container, fragment).commit();
+        }
+    }
+
+    private void setStudentUi(Bundle savedInstanceState) {
+        startService(new Intent(this, FeedStudentDataService.class));
+        if (savedInstanceState == null) {
+            StuSubjectFragment fragment = new StuSubjectFragment();
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.container, fragment).commit();
         }
     }
 
