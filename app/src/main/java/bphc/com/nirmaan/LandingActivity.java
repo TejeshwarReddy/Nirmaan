@@ -23,6 +23,7 @@ public class LandingActivity extends AppCompatActivity
     public static final String TAG = "LandingActivity";
     DBTransactions transactions;
     DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
