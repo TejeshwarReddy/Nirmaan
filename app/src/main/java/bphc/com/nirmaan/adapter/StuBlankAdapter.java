@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import bphc.com.nirmaan.R;
+import bphc.com.nirmaan.database.DBTransactions;
+import bphc.com.nirmaan.object.StuAnswerListener;
 import bphc.com.nirmaan.object.StuBlank;
 import io.realm.RealmResults;
 
@@ -70,40 +72,86 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
         holder.q_no.setText(position);
         holder.question.setText(blank.getQuestion());
 
-        //to display the submit button:
-        holder.ans.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if(view.hasFocus()){
-                    holder.answerDropDown.setVisibility(View.VISIBLE);
+        final DBTransactions dbTransactions = new DBTransactions(context);
+
+        // StuAnswerListener is the class whose object will be used to compare if the question
+        // is answered before. last parameter--> 0-blanks; 1-Mcq, 2-TF;
+        RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(blank.getSubject(),
+                Integer.parseInt(blank.getTopicId()),Integer.parseInt(blank.getId()),0);
+
+
+        if(listenerSet==null){
+            //to display the submit button:
+            holder.ans.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if(view.hasFocus()){
+                        holder.answerDropDown.setVisibility(View.VISIBLE);
+                    }
                 }
-            }
-        });
-        holder.submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(holder.ans.getText().toString().equals(blank.getAns())){
+            });
+            holder.submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if(holder.ans.getText().toString().equals(blank.getAns())){
                         // for right
 
-                    // display correct image; diaplay drop-down
-                    //
-                    holder.correct.setVisibility(View.VISIBLE);
-                }
-                else{   // for wrong
+                        //1 if right, 0 if wrong. --> in the last argument
+                        dbTransactions.feedStudentAnswer(holder.ans.getText().toString(),
+                                blank.getSubject(),0,Integer.parseInt(blank.getTopicId()),
+                                Integer.parseInt(blank.getId()),1);
 
-                    // display wrong image; visible the drop-down;
-                    // set correct answer in the text view.
-                    // visible the correct answer.
+                        // display correct image; diaplay drop-down
+                        //
+                        holder.correct.setVisibility(View.VISIBLE);
+                    }
+                    else{   // for wrong
 
-                    holder.correctAns.setText("Correct answer is: "+ blank.getAns());
-                    holder.wrong.setVisibility(View.VISIBLE);
-                    holder.answerDropDown.setVisibility(View.VISIBLE);
-                    holder.correctAns.setVisibility(View.VISIBLE);
+                        dbTransactions.feedStudentAnswer(holder.ans.getText().toString(),
+                                blank.getSubject(),0,Integer.parseInt(blank.getTopicId()),
+                                Integer.parseInt(blank.getId()),0);
+
+                        // display wrong image; visible the drop-down;
+                        // set correct answer in the text view.
+                        // visible the correct answer.
+
+                        holder.correctAns.setText("Correct answer is: "+ blank.getAns());
+                        holder.wrong.setVisibility(View.VISIBLE);
+                        holder.answerDropDown.setVisibility(View.VISIBLE);
+                        holder.correctAns.setVisibility(View.VISIBLE);
+                    }
+                    holder.submit.setVisibility(View.GONE);
                 }
-                holder.submit.setVisibility(View.GONE);
+            });
+            //holder.ans.setText(blank.getAns());
+        }
+        else {
+            StuAnswerListener listener = listenerSet.get(0);
+            if(listener.getIsRight()==1){
+                // means if the question is answered before and is answered CORRECTLY
+                // set his answer (which is correct answer) in edit text
+                // visible the "Correct" image
+
+                holder.ans.setText(listener.getAnswer());
+                holder.correctAns.setVisibility(View.VISIBLE);
+
             }
-        });
-        //holder.ans.setText(blank.getAns());
+            else if(listener.getIsRight()==0){
+                // means if the answered answer is WRONG
+                // set his answer (which is the wrong one) in edit text
+                // visible the wrong image
+                // visible the drop-down linear layout
+                // visible the correct answer text view
+                // set the correc ans. tv with the correct answer
+
+                holder.ans.setText(listener.getAnswer());
+                holder.wrong.setVisibility(View.VISIBLE);
+                holder.answerDropDown.setVisibility(View.VISIBLE);
+                holder.correctAns.setVisibility(View.VISIBLE);
+                holder.correctAns.setText(blank.getAns());
+            }
+        }
     }
 
 

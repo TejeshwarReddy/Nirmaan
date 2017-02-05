@@ -5,11 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import bphc.com.nirmaan.R;
+import bphc.com.nirmaan.database.DBTransactions;
+import bphc.com.nirmaan.object.StuAnswerListener;
 import bphc.com.nirmaan.object.StuTruefalse;
 import io.realm.RealmResults;
 
@@ -28,9 +31,12 @@ public StuTFAdapter(Context context, RealmResults<StuTruefalse> tfList) {
         }
 
 class StuTFViewHolder extends RecyclerView.ViewHolder {
-    TextView question,q_no;
+    TextView question,q_no, correctAns;
     RadioGroup radioGroup;
     RadioButton r1, r2;
+
+    ImageView correct, wrong;
+
     StuTFViewHolder(View itemView) {
         super(itemView);
         q_no = (TextView) itemView.findViewById(R.id.stu_tf_q_no);
@@ -38,6 +44,10 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
         radioGroup=(RadioGroup) itemView.findViewById(R.id.stu_tf_q_radiogroup);
         r1=(RadioButton) itemView.findViewById(R.id.stu_tf_r1);
         r2=(RadioButton) itemView.findViewById(R.id.stu_tf_r2);
+
+        correctAns = (TextView) itemView.findViewById(R.id.stu_tf_correct_answer);
+        correct = (ImageView) itemView.findViewById(R.id.stu_tf_correct);
+        wrong = (ImageView) itemView.findViewById(R.id.stu_tf_wrong);
     }
 
 }
@@ -57,6 +67,17 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
         StuTruefalse tf = tfList.get(position);
         holder.q_no.setText(tf.getId());
         holder.question.setText(tf.getQuestion());
+
+
+        final DBTransactions dbTransactions = new DBTransactions(context);
+        // StuAnswerListener is the class whose object will be used to compare if the question
+        // is answered before. last parameter--> 0-blanks; 1-Mcq, 2-TF;
+        RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(tf.getSubject(),
+                Integer.parseInt(tf.getTopicId()),Integer.parseInt(tf.getId()),2);
+
+        if(listenerSet==null){
+
+        }
 
 /*
         //For answer
