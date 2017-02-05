@@ -10,14 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 import bphc.com.nirmaan.adapter.VolScheduleAdapter;
 import bphc.com.nirmaan.app.Constants;
@@ -72,6 +67,7 @@ public class VolScheduleFragment extends Fragment
         Intent intent = new Intent(getActivity(), QuestionBankActivity.class);
         intent.putExtra(
                 Constants.KEY_VOLUNTEER_TIME, scheduleVisit);
+
         startActivity(intent);
     }
 }
