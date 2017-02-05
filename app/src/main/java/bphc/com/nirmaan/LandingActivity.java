@@ -50,7 +50,7 @@ public class LandingActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         transactions = new DBTransactions(this);
-        RealmResults<VolMcq> volMcqs = transactions.getMcqs(1486073208000l);
+        RealmResults<VolMcq> volMcqs = transactions.getVolMcqs(1486073208000l);
         for (int i = 0; i< volMcqs.size(); i++){
             Log.e(TAG, volMcqs.get(i).getQuestion());
         }

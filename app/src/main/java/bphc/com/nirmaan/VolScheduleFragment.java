@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -52,7 +52,7 @@ public class VolScheduleFragment extends Fragment {
         mTutClassContainer = (LinearLayout) view.findViewById(R.id.vol_schedule_container);
 
         LayoutInflater inflater = LayoutInflater.from(view.getContext());
-        List<VolSchedule> schedules = mTransactions.getSchedule();
+        List<VolSchedule> schedules = mTransactions.getVolSchedule();
         System.out.println("Size of schedule: " + schedules.size());
 
         for (final VolSchedule schedule : schedules){
@@ -65,8 +65,8 @@ public class VolScheduleFragment extends Fragment {
             TextView time_day = (TextView) scheduleView.findViewById(R.id.vol_schedule_time_day);
             time_day.setText(getTime(mCalendar) + ", " + getDay(mCalendar));
 
-            ImageView detail = (ImageView) scheduleView.findViewById(R.id.vol_schedule_detail);
-            detail.setOnClickListener(new View.OnClickListener() {
+            CardView cardView = (CardView) scheduleView.findViewById(R.id.card_schedule);
+            cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //TODO: Complete the intent

@@ -23,28 +23,28 @@ public class DBTransactions {
         Realm.init(context);
     }
 
-    public RealmResults<VolMcq> getMcqs(long time){
+    public RealmResults<VolMcq> getVolMcqs(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolMcq.class)
                 .equalTo("scheduledVisit",time)
                 .findAll();
     }
 
-    public RealmResults<VolBlank> getBlanks(long time){
+    public RealmResults<VolBlank> getVolBlanks(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolBlank.class)
                 .equalTo("scheduledVisit",time)
                 .findAll();
     }
 
-    public RealmResults<VolTruefalse> getTrueFalse(long time){
+    public RealmResults<VolTruefalse> getVolTrueFalse(long time){
         realm = Realm.getDefaultInstance();
         return realm.where(VolTruefalse.class)
                 .equalTo("scheduledVisit",time)
                 .findAll();
     }
 
-    public RealmResults<VolSchedule> getSchedule(){
+    public RealmResults<VolSchedule> getVolSchedule(){
         realm = Realm.getDefaultInstance();
         return realm.where(VolSchedule.class)
                 .findAll();
