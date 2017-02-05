@@ -4,15 +4,13 @@ package bphc.com.nirmaan.object;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 import io.realm.RealmList;
 
 public class VolQuestions {
 
     @SerializedName("mcqs")
     @Expose
-    private List<VolMcq> volMcqs = null;
+    private RealmList<VolMcq> volMcqs = null;
     @SerializedName("blanks")
     @Expose
     private RealmList<VolBlank> volBlanks = null;
@@ -33,18 +31,18 @@ public class VolQuestions {
      * @param volMcqs
      * @param volTruefalse
      */
-    public VolQuestions(List<VolMcq> volMcqs, RealmList<VolBlank> volBlanks, RealmList<VolTruefalse> volTruefalse) {
+    public VolQuestions(RealmList<VolMcq> volMcqs, RealmList<VolBlank> volBlanks, RealmList<VolTruefalse> volTruefalse) {
         super();
         this.volMcqs = volMcqs;
         this.volBlanks = volBlanks;
         this.volTruefalse = volTruefalse;
     }
 
-    public List<VolMcq> getVolMcqs() {
+    public RealmList<VolMcq> getVolMcqs() {
         return volMcqs;
     }
 
-    public void setVolMcqs(List<VolMcq> volMcqs) {
+    public void setVolMcqs(RealmList<VolMcq> volMcqs) {
         this.volMcqs = volMcqs;
     }
 
