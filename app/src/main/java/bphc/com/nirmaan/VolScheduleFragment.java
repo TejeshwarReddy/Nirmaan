@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -65,11 +65,20 @@ public class VolScheduleFragment extends Fragment {
             TextView time_day = (TextView) scheduleView.findViewById(R.id.vol_schedule_time_day);
             time_day.setText(getTime(mCalendar) + ", " + getDay(mCalendar));
 
-            CardView cardView = (CardView) scheduleView.findViewById(R.id.card_schedule);
-            cardView.setOnClickListener(new View.OnClickListener() {
+            ImageButton button = (ImageButton) scheduleView.findViewById(R.id.vol_schedule_detail);
+            button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO: Complete the intent
+                    final VolSchedule intentSchedule = schedule;
+                    Intent intent = new Intent(getActivity(), QuestionBankActivity.class);
+                    intent.putExtra(
+                            Constants.KEY_VOLUNTEER_TIME, intentSchedule.getScheduledVisit());
+                    startActivity(intent);
+                }
+            });
+            scheduleView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     final VolSchedule intentSchedule = schedule;
                     Intent intent = new Intent(getActivity(), QuestionBankActivity.class);
                     intent.putExtra(

@@ -52,12 +52,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1">
+                android:gravity="end">
 
-                <ImageView
+                <ImageButton
+                    android:background="@android:color/white"
                     android:id="@+id/vol_schedule_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
                     app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
