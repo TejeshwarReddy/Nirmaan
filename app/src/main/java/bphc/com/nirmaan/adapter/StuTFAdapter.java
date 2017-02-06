@@ -60,11 +60,11 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
     }
 
     @Override
-    public void onBindViewHolder(StuTFAdapter.StuTFViewHolder holder, int position) {
+    public void onBindViewHolder(final StuTFAdapter.StuTFViewHolder holder, int position) {
         RadioGroup radioGroup = holder.radioGroup;
         radioGroup.removeAllViews();
 
-        StuTruefalse tf = tfList.get(position);
+        final StuTruefalse tf = tfList.get(position);
         holder.q_no.setText(tf.getId());
         holder.question.setText(tf.getQuestion());
 
@@ -76,7 +76,83 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
                 Integer.parseInt(tf.getTopicId()),Integer.parseInt(tf.getId()),2);
 
         if(listenerSet==null){
-
+            holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                    switch (radioButtonID){
+                        case R.id.stu_tf_r1:    // If the true is selected;
+                            if(Integer.parseInt(tf.getAns())==1){
+                                dbTransactions.feedStudentAnswer("1",
+                                        tf.getSubject(),
+                                        2,
+                                        Integer.parseInt(tf.getTopicId()),
+                                        Integer.parseInt(tf.getId()),
+                                        1);
+                                holder.correct.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                dbTransactions.feedStudentAnswer("1",
+                                        tf.getSubject(),
+                                        2,
+                                        Integer.parseInt(tf.getTopicId()),
+                                        Integer.parseInt(tf.getId()),
+                                        0);
+                                holder.wrong.setVisibility(View.VISIBLE);
+                                holder.correctAns.setText("Correct option is: False");
+                            }
+                            break;
+                        case R.id.stu_mcq_opt2: // if student selected false
+                            if(Integer.parseInt(tf.getAns())==0){ // if the answer is also false
+                                dbTransactions.feedStudentAnswer("0",
+                                        tf.getSubject(),
+                                        2,
+                                        Integer.parseInt(tf.getTopicId()),
+                                        Integer.parseInt(tf.getId()),
+                                        1);
+                                holder.correct.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                dbTransactions.feedStudentAnswer("0",
+                                        tf.getSubject(),
+                                        2,
+                                        Integer.parseInt(tf.getTopicId()),
+                                        Integer.parseInt(tf.getId()),
+                                        0);
+                                holder.wrong.setVisibility(View.VISIBLE);
+                                holder.correctAns.setText("Correct option is: False");
+                            }
+                    }
+                }
+            });
+        }
+        else if(listenerSet.size()==1){
+            StuAnswerListener listener = listenerSet.get(0);
+            if(listener.getIsRight()==0){
+                // if the student answered correctly
+                String stuAns = listener.getAnswer();
+                switch (stuAns){
+                    case "1": // if the student answered true (which is correct)
+                        holder.r1.setChecked(true);
+                        holder.correct.setVisibility(View.VISIBLE);
+                        break;
+                    case "0": // if the student answered false (which is correct)
+                        holder.r2.setChecked(true);
+                        holder.correct.setVisibility(View.VISIBLE);
+                }
+            }
+            else { // if student answered wrong
+                String stuAns = listener.getAnswer();
+                switch (stuAns){
+                    case "1": // if the student answered true (which is wrong)
+                        holder.r1.setChecked(true);
+                        holder.wrong.setVisibility(View.VISIBLE);
+                        break;
+                    case "0":
+                        holder.r2.setChecked(true);
+                        holder.wrong.setVisibility(View.VISIBLE);
+                }
+            }
         }
 
 /*

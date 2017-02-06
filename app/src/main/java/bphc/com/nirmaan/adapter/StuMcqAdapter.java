@@ -168,8 +168,6 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
                                 holder.wrong.setVisibility(View.VISIBLE);
                                 holder.correctAns.setText("Correct option is: "+ mcq.getAns());
                             }
-                            break;
-
                     }
                 }
             });
@@ -202,18 +200,26 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
                     case "A":
                         holder.r1.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
+                        holder.correctAns.setText("The correct answer is option: "+ mcq.getAns());
+                        holder.correctAns.setVisibility(View.VISIBLE);
                         break;
                     case "B":
                         holder.r2.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
+                        holder.correctAns.setText("The correct answer is option: "+ mcq.getAns());
+                        holder.correctAns.setVisibility(View.VISIBLE);
                         break;
                     case "C":
                         holder.r3.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
+                        holder.correctAns.setText("The correct answer is option: "+ mcq.getAns());
+                        holder.correctAns.setVisibility(View.VISIBLE);
                         break;
                     case "D":
                         holder.r4.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
+                        holder.correctAns.setText("The correct answer is option: "+ mcq.getAns());
+                        holder.correctAns.setVisibility(View.VISIBLE);
                 }
             }
         }

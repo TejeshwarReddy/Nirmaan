@@ -98,8 +98,11 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                         // for right
 
                         //1 if right, 0 if wrong. --> in the last argument
-                        dbTransactions.feedStudentAnswer(holder.ans.getText().toString(),
-                                blank.getSubject(),0,Integer.parseInt(blank.getTopicId()),
+                        dbTransactions.feedStudentAnswer(
+                                holder.ans.getText().toString(),
+                                blank.getSubject(),
+                                0,
+                                Integer.parseInt(blank.getTopicId()),
                                 Integer.parseInt(blank.getId()),1);
 
                         // display correct image; diaplay drop-down
