@@ -51,7 +51,6 @@ public class StuSubjectFragment extends Fragment implements
     @Override
     public void onClick(StuMaterial material) {
         StuTopicFragment fragment = new StuTopicFragment();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .show(fragment);
+        fragment.show(getActivity().getSupportFragmentManager(), null);
     }
 }
