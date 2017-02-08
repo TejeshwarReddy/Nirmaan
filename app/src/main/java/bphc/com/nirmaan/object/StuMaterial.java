@@ -9,13 +9,13 @@ import io.realm.annotations.PrimaryKey;
 
 public class StuMaterial extends RealmObject{
 
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private String id;
     @SerializedName("class")
     @Expose
     private String _class;
+    @PrimaryKey
     @SerializedName("subject")
     @Expose
     private String subject;

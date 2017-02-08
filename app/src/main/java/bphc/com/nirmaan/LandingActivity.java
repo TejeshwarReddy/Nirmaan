@@ -42,7 +42,7 @@ public class LandingActivity extends AppCompatActivity
                 setStudentUi(savedInstanceState);
                 break;
             default:
-                throw new UnknownError("'" + priviledge + "'" + " priviledge is not permissible.");
+//                throw new UnknownError("'" + priviledge + "'" + " priviledge is not permissible.");
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,7 +96,7 @@ public class LandingActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.END);
+            drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -116,7 +116,7 @@ public class LandingActivity extends AppCompatActivity
                 LoginPrefs.setPrefs(this,null,null,-1,-1);
                 break;
         }
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
