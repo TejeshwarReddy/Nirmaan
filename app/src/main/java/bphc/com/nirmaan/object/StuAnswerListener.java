@@ -80,5 +80,4 @@ public class StuAnswerListener extends RealmObject{
         this.isRight = isRight;
     }
 
-
 }
