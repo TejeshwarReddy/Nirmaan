@@ -3,6 +3,7 @@ package bphc.com.nirmaan;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,5 +41,6 @@ public class VolTFFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         tfrecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_tf);
         tfrecycler.setAdapter(new VolTFAdapter(getActivity(), tfList));
+        tfrecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }
