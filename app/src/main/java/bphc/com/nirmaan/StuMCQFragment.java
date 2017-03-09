@@ -13,7 +13,7 @@ import bphc.com.nirmaan.adapter.StuBlankAdapter;
 import bphc.com.nirmaan.adapter.VolBlankAdapter;
 import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
-import bphc.com.nirmaan.object.StuBlank;
+import bphc.com.nirmaan.object.StuMcq;
 import bphc.com.nirmaan.object.VolBlank;
 import io.realm.RealmResults;
 
@@ -21,12 +21,12 @@ import io.realm.RealmResults;
  * Created by sarath on 05-02-2017.
  */
 
-public class StuBlankFragment extends Fragment {
+public class StuMCQFragment extends Fragment {
 
-    RealmResults<StuBlank> blanks;
-    RecyclerView blankRecycler;
+    RealmResults<StuMcq> mcqs;
+    RecyclerView mcqRecycler;
 
-    public StuBlankFragment() {
+    public StuMCQFragment() {
         // Required empty public constructor
     }
 
@@ -36,8 +36,8 @@ public class StuBlankFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Get the Realm StuBlank object from the database!
-        blanks = new DBTransactions(getActivity())
-                .getStuBlanks(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
+        mcqs = new DBTransactions(getActivity())
+                .getStuMcqs(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
                         getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));
 
         // Inflate the layout for this fragment
@@ -47,8 +47,8 @@ public class StuBlankFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        blankRecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_blank);
+        mcqRecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_blank);
         //blankRecycler.setAdapter(new StuBlankAdapter(getActivity(),));
-        blankRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mcqRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }
