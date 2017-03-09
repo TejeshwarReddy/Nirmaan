@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bphc.com.nirmaan.adapter.StuBlankAdapter;
+import bphc.com.nirmaan.adapter.StuMcqAdapter;
 import bphc.com.nirmaan.adapter.VolBlankAdapter;
 import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
@@ -48,7 +49,7 @@ public class StuMCQFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mcqRecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_blank);
-        //blankRecycler.setAdapter(new StuBlankAdapter(getActivity(),));
+        mcqRecycler.setAdapter(new StuMcqAdapter(getActivity(), mcqs));
         mcqRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }

@@ -48,7 +48,7 @@ public class StuBlankFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         blankRecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_blank);
-        //blankRecycler.setAdapter(new StuBlankAdapter(getActivity(),));
+        blankRecycler.setAdapter(new StuBlankAdapter(getActivity(),blanks));
         blankRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }
