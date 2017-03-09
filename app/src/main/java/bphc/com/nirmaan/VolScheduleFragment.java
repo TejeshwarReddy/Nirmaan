@@ -64,7 +64,7 @@ public class VolScheduleFragment extends Fragment
 
     @Override
     public void onClick(Long scheduleVisit) {
-        Intent intent = new Intent(getActivity(), QuestionBankActivity.class);
+        Intent intent = new Intent(getActivity(), VolunteerQuestionBankActivity.class);
         intent.putExtra(
                 Constants.KEY_VOLUNTEER_TIME, scheduleVisit);
 

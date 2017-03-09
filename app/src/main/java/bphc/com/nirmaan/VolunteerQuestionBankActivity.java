@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuestionBankActivity extends AppCompatActivity {
+public class VolunteerQuestionBankActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
