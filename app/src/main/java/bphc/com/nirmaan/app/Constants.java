@@ -13,4 +13,6 @@ public class Constants {
     public static final String login_success = "success";
     public static final String PACKAGE_NAME = "bphc.com.nirmaan";
     public static final String KEY_VOLUNTEER_TIME = "volunteer_time";
+    public static final String KEY_STUDENT_TOPIC_ID = "student_topic_id";
+    public static final String KEY_STUDENT_SUBJECT = "student_subject";
 }
