@@ -26,7 +26,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bphc.com.nirmaan.LoginActivity" />
         </activity>
-        <activity android:name=".QuestionBankActivity">
+        <activity android:name=".VolQuestionBankActivity">
 
         </activity>
 

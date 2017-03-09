@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import bphc.com.nirmaan.adapter.StuTopicAdapter;
+import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.StuTopicCount;
 
@@ -45,9 +46,10 @@ public class StuTopicFragment extends DialogFragment
 
     @Override
     public void onClick(StuTopicCount topic) {
-        //TODO: complete the intent to start up new Activity for student questions
         dismiss();
-        Intent intent = new Intent(/*bc yahan andar likhna aur niche put extra likhna*/);
+        Intent intent = new Intent(getActivity(), StuQuestionBankActivity.class);
+        intent.putExtra(Constants.KEY_STUDENT_SUBJECT, topic.getSubject());
+        intent.putExtra(Constants.KEY_STUDENT_TOPIC_ID, Integer.parseInt(topic.getTopics()));
         startActivity(intent);
     }
 }
