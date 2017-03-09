@@ -2,6 +2,7 @@ package bphc.com.nirmaan.database;
 
 import android.content.Context;
 
+import bphc.com.nirmaan.object.StuAnswerListener;
 import bphc.com.nirmaan.object.StuBlank;
 import bphc.com.nirmaan.object.StuMaterial;
 import bphc.com.nirmaan.object.StuMcq;
@@ -83,6 +84,38 @@ public class DBTransactions {
         return realm.where(StuBlank.class)
                 .equalTo("subject",subject)
                 .equalTo("topic_id",topicid)
+                .findAll();
+    }
+    public void feedStudentAnswer(String answer, String subject,  int type, int topic_id, int question_id, int isRight){
+        realm = Realm.getDefaultInstance();
+        StuAnswerListener stuAnswerListener = realm.createObject(StuAnswerListener.class);
+        if (realm.where(StuAnswerListener.class)
+                .equalTo("subject",subject)
+                .equalTo("topic_id",topic_id)
+                .equalTo("question_id",question_id)
+                .equalTo("type",type)
+                .findAll().size()==0) {
+            realm.beginTransaction();
+            stuAnswerListener.setAnswer(answer);
+            stuAnswerListener.setIsRight(isRight);
+            stuAnswerListener.setQuestion_id(question_id);
+            stuAnswerListener.setSubject(subject);
+            stuAnswerListener.setType(type);
+            stuAnswerListener.setTopic_id(topic_id);
+            realm.commitTransaction();
+        }else{
+            stuAnswerListener.setAnswer(answer);
+            stuAnswerListener.setIsRight(isRight);
+        }
+    }
+
+    public RealmResults<StuAnswerListener> getStudentAnswer(String subject, int topic_id, int question_id, int type){
+        realm = Realm.getDefaultInstance();
+        return realm.where(StuAnswerListener.class)
+                .equalTo("subject",subject)
+                .equalTo("topic_id",topic_id)
+                .equalTo("question_id",question_id)
+                .equalTo("type",type)
                 .findAll();
     }
 }
