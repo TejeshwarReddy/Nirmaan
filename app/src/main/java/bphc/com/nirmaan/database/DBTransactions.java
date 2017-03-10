@@ -56,7 +56,6 @@ public class DBTransactions {
     public RealmResults<StuMaterial> getMaterial(){
         realm = Realm.getDefaultInstance();
         return realm.where(StuMaterial.class)
-                .findAll()
                 .distinct("subject");
     }
 

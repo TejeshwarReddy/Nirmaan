@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
 public class StuMaterial extends RealmObject{
@@ -16,6 +17,7 @@ public class StuMaterial extends RealmObject{
     @SerializedName("class")
     @Expose
     private String _class;
+    @Index
     @SerializedName("subject")
     @Expose
     private String subject;
