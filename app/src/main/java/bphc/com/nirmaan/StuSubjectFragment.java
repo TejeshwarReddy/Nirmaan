@@ -1,6 +1,5 @@
 package bphc.com.nirmaan;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -53,6 +52,6 @@ public class StuSubjectFragment extends Fragment implements
     public void onClick(StuMaterial material) {
         StuTopicFragment fragment = new StuTopicFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
-                .show(fragment);
+                .show(fragment).commit();
     }
 }
