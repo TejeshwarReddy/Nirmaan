@@ -2,6 +2,7 @@ package bphc.com.nirmaan.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
         //answersLinearLayoutContainer.removeAllViews();
 
         final StuBlank blank = blankList.get(position);
-        holder.q_no.setText(position);
+//        holder.q_no.setText(position);
         holder.question.setText(blank.getQuestion());
 
         final DBTransactions dbTransactions = new DBTransactions(context);
@@ -80,7 +81,11 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                 Integer.parseInt(blank.getTopicId()),Integer.parseInt(blank.getId()),0);
 
 
-        if(listenerSet==null){
+        Log.e("TDSK ERROR GENREATOR", "The size of the listener set is: "+listenerSet.size());
+
+
+        //if(listenerSet==null){
+        if(listenerSet.size()==0){
             //to display the submit button:
             holder.ans.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
@@ -94,7 +99,10 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                 @Override
                 public void onClick(View view) {
 
-                    if(holder.ans.getText().toString().equals(blank.getAns())){
+                    //// make edit text in editable
+                    holder.ans.setClickable(false); holder.ans.setFocusable(false);
+
+                    if(holder.ans.getText().toString().equalsIgnoreCase(blank.getAns())){
                         // for right
 
                         //1 if right, 0 if wrong. --> in the last argument
@@ -111,6 +119,9 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                     }
                     else{   // for wrong
 
+                        Log.e("TDSK ERROR GENERATOR", holder.ans.getText().toString()+ "\n"
+                        + blank.getSubject()+ "Topic id: "+blank.getTopicId());
+
                         dbTransactions.feedStudentAnswer(holder.ans.getText().toString(),
                                 blank.getSubject(),0,Integer.parseInt(blank.getTopicId()),
                                 Integer.parseInt(blank.getId()),0);
@@ -119,10 +130,12 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                         // set correct answer in the text view.
                         // visible the correct answer.
 
+
                         holder.correctAns.setText("Correct answer is: "+ blank.getAns());
                         holder.wrong.setVisibility(View.VISIBLE);
                         holder.answerDropDown.setVisibility(View.VISIBLE);
                         holder.correctAns.setVisibility(View.VISIBLE);
+
                     }
                     holder.submit.setVisibility(View.GONE);
                 }
@@ -130,6 +143,9 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
             //holder.ans.setText(blank.getAns());
         }
         else {
+            if(listenerSet.size()<=0){
+                Log.e("TDSK ERROR GENERATOR", "listener set has less than 0 elements");
+            }
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==1){
                 // means if the question is answered before and is answered CORRECTLY
@@ -137,7 +153,8 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                 // visible the "Correct" image
 
                 holder.ans.setText(listener.getAnswer());
-                holder.correctAns.setVisibility(View.VISIBLE);
+                //holder.correctAns.setVisibility(View.VISIBLE);
+                holder.correct.setVisibility(View.VISIBLE);
 
             }
             else if(listener.getIsRight()==0){

@@ -66,7 +66,7 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
     public void onBindViewHolder(final StuMcqAdapter.StuMcqViewHolder holder, int position) {
         final StuMcq mcq = mcqList.get(position);
 
-        holder.q_no.setText(position);
+        //holder.q_no.setText(position);
         holder.question.setText(mcq.getQuestion());
         holder.r1.setText(mcq.getA());
         holder.r2.setText(mcq.getB());

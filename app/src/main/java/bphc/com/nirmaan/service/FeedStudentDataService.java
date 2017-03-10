@@ -2,9 +2,9 @@ package bphc.com.nirmaan.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
-import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.object.StuBlank;
 import bphc.com.nirmaan.object.StuMaterial;
 import bphc.com.nirmaan.object.StuMcq;
@@ -24,11 +24,14 @@ public class FeedStudentDataService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Realm.init(this);
-        Realm realm = Realm.getDefaultInstance();
+
+        /*Call<StuQuestions> studentDataCall = ApiManager.getInstance().getService().getStudentData(
+                LoginPrefs.getNamePref(this),
+                LoginPrefs.getPasswordPref(this));*/
 
         Call<StuQuestions> studentDataCall = ApiManager.getInstance().getService().getStudentData(
-                LoginPrefs.getNamePref(this),
-                LoginPrefs.getPasswordPref(this));
+                "s17001",
+                "dinesh");
 
         studentDataCall.enqueue(new Callback<StuQuestions>() {
             @Override
@@ -40,6 +43,9 @@ public class FeedStudentDataService extends IntentService {
                 final RealmList<StuTruefalse> stuTruefalses = response.body().getTruefalse();
                 final RealmList<StuMaterial> stuMaterials = response.body().getMaterial();
                 if (stuMcqs.size() != 0) {
+                    for (int i = 0;i<stuMcqs.size();i++){
+                        Log.e("Stumcqs",response.body().getMcqs().get(i).getQuestion());
+                    }
                     realm.copyToRealmOrUpdate(stuMcqs);
                 }
                 if (stuBlanks.size() != 0){
@@ -56,6 +62,7 @@ public class FeedStudentDataService extends IntentService {
 
             @Override
             public void onFailure(Call<StuQuestions> call, Throwable t) {
+                Log.e("hygvb","hguhjk");
                 Toast.makeText(FeedStudentDataService.this,"Check Internet Connection",Toast.LENGTH_LONG).show();
             }
         });

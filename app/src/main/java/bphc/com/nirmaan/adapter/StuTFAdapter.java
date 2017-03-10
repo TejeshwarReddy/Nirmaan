@@ -55,17 +55,17 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
     @Override
     public StuTFAdapter.StuTFViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_stu_mcq_card, parent, false);
+                .inflate(R.layout.custom_stu_tf_card, parent, false);
         return new StuTFAdapter.StuTFViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final StuTFAdapter.StuTFViewHolder holder, int position) {
         RadioGroup radioGroup = holder.radioGroup;
-        radioGroup.removeAllViews();
+        //radioGroup.removeAllViews();
 
         final StuTruefalse tf = tfList.get(position);
-        holder.q_no.setText(tf.getId());
+//        holder.q_no.setText(tf.getId());
         holder.question.setText(tf.getQuestion());
 
 

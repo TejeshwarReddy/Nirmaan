@@ -69,14 +69,12 @@ public class DBTransactions {
         realm = Realm.getDefaultInstance();
         return realm.where(StuMcq.class)
                 .equalTo("subject",subject)
-                .equalTo("topic_id",topicid)
                 .findAll();
     }
     public RealmResults<StuTruefalse> getStuTF(String subject, int topicid){
         realm = Realm.getDefaultInstance();
         return realm.where(StuTruefalse.class)
                 .equalTo("subject",subject)
-                .equalTo("topic_id",topicid)
                 .findAll();
     }
 
@@ -84,11 +82,13 @@ public class DBTransactions {
         realm = Realm.getDefaultInstance();
         return realm.where(StuBlank.class)
                 .equalTo("subject",subject)
-                .equalTo("topic_id",topicid)
                 .findAll();
+
+          // TODO.equalTo("topic_id",topicid)
     }
     public void feedStudentAnswer(String answer, String subject,  int type, int topic_id, int question_id, int isRight){
         realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
         StuAnswerListener stuAnswerListener = realm.createObject(StuAnswerListener.class);
         if (realm.where(StuAnswerListener.class)
                 .equalTo("subject",subject)
@@ -96,18 +96,18 @@ public class DBTransactions {
                 .equalTo("question_id",question_id)
                 .equalTo("type",type)
                 .findAll().size()==0) {
-            realm.beginTransaction();
             stuAnswerListener.setAnswer(answer);
             stuAnswerListener.setIsRight(isRight);
             stuAnswerListener.setQuestion_id(question_id);
             stuAnswerListener.setSubject(subject);
             stuAnswerListener.setType(type);
             stuAnswerListener.setTopic_id(topic_id);
-            realm.commitTransaction();
+
         }else{
             stuAnswerListener.setAnswer(answer);
             stuAnswerListener.setIsRight(isRight);
         }
+        realm.commitTransaction();
     }
 
     public RealmResults<StuAnswerListener> getStudentAnswer(String subject, int topic_id, int question_id, int type){

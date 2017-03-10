@@ -10,13 +10,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
         <activity android:name=".LoginActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
+
         <activity
             android:name=".LandingActivity"
             android:label="@string/title_activity_landing"
@@ -34,6 +36,17 @@
             android:name=".ScheduledDayStuffActivity"
             android:label="@string/title_activity_scheduled_day_stuff"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".StuQuestionBankActivity"
+            android:label="@string/title_activity_scheduled_day_stuff"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".service.FeedVolunteerDataService"
