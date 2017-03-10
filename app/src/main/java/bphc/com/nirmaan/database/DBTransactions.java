@@ -59,9 +59,10 @@ public class DBTransactions {
                 .distinct("subject");
     }
 
-    public RealmResults<StuTopicCount> getTopics(){
+    public RealmResults<StuTopicCount> getTopics(String subject){
         realm = Realm.getDefaultInstance();
         return realm.where(StuTopicCount.class)
+                .equalTo("subject",subject)
                 .findAll();
     }
 
@@ -69,12 +70,14 @@ public class DBTransactions {
         realm = Realm.getDefaultInstance();
         return realm.where(StuMcq.class)
                 .equalTo("subject",subject)
+                .equalTo("topicId",topicid)
                 .findAll();
     }
     public RealmResults<StuTruefalse> getStuTF(String subject, int topicid){
         realm = Realm.getDefaultInstance();
         return realm.where(StuTruefalse.class)
                 .equalTo("subject",subject)
+                .equalTo("topicId",topicid)
                 .findAll();
     }
 
@@ -82,6 +85,7 @@ public class DBTransactions {
         realm = Realm.getDefaultInstance();
         return realm.where(StuBlank.class)
                 .equalTo("subject",subject)
+                .equalTo("topicId",topicid)
                 .findAll();
 
           // TODO.equalTo("topic_id",topicid)

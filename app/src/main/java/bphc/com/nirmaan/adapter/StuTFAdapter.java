@@ -75,7 +75,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
         RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(tf.getSubject(),
                 Integer.parseInt(tf.getTopicId()),Integer.parseInt(tf.getId()),2);
 
-        if(listenerSet==null){
+        if(listenerSet.size()==0){ //if the question is unanswered
             holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {

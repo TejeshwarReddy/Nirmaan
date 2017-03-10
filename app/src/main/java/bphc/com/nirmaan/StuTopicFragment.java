@@ -25,6 +25,7 @@ public class StuTopicFragment extends DialogFragment
         implements StuTopicAdapter.OnStuTopicClickListener{
 
     private RecyclerView mTopicContainer;
+    String subject;
 
     @Nullable
     @Override
@@ -38,6 +39,7 @@ public class StuTopicFragment extends DialogFragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mTopicContainer = (RecyclerView) view.findViewById(R.id.stu_topic_container);
+        //TODO: Siddhant KUMAR SHOULD WRITE THE
         List<StuTopicCount> topics = new DBTransactions(getActivity()).getTopics();
         StuTopicAdapter adapter = new StuTopicAdapter(topics, this);
         mTopicContainer.setAdapter(adapter);
