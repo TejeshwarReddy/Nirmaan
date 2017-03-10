@@ -2,6 +2,7 @@ package bphc.com.nirmaan.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,10 +80,15 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
             holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+
+                    // make the buttons non-editable
+                    holder.radioGroup.setClickable(false);
+
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId(); Log.e("TDSK TF VIEWER", radioButtonID+""); //remove later
                     switch (radioButtonID){
                         case R.id.stu_tf_r1:    // If the true is selected;
                             if(Integer.parseInt(tf.getAns())==1){
+                                // If answer is "true"
                                 dbTransactions.feedStudentAnswer("1",
                                         tf.getSubject(),
                                         2,
@@ -90,8 +96,10 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                                         Integer.parseInt(tf.getId()),
                                         1);
                                 holder.correct.setVisibility(View.VISIBLE);
+                                holder.correctAns.setVisibility(View.VISIBLE);
                             }
                             else {
+                                // If correct answer is "false"
                                 dbTransactions.feedStudentAnswer("1",
                                         tf.getSubject(),
                                         2,
@@ -100,6 +108,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                                         0);
                                 holder.wrong.setVisibility(View.VISIBLE);
                                 holder.correctAns.setText("Correct option is: False");
+                                holder.correctAns.setVisibility(View.VISIBLE);
                             }
                             break;
                         case R.id.stu_mcq_opt2: // if student selected false
@@ -126,7 +135,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                 }
             });
         }
-        else if(listenerSet.size()==1){
+        else { //If listenerSet.size()!=0 --> Meaning that the question has been answered before
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==0){
                 // if the student answered correctly
@@ -153,6 +162,8 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                         holder.wrong.setVisibility(View.VISIBLE);
                 }
             }
+            // make the buttons non-editable
+            holder.radioGroup.setClickable(false);
         }
 
 /*
