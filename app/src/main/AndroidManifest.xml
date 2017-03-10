@@ -10,13 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity
             android:name=".LandingActivity"
             android:label="@string/title_activity_landing"
@@ -26,10 +20,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bphc.com.nirmaan.LoginActivity" />
         </activity>
-        <activity android:name=".QuestionBankActivity">
-
-        </activity>
-
+        <activity android:name=".QuestionBankActivity" />
         <activity
             android:name=".ScheduledDayStuffActivity"
             android:label="@string/title_activity_scheduled_day_stuff"
@@ -40,7 +31,18 @@
             android:enabled="true" />
         <service
             android:name=".service.FeedStudentDataService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity
+            android:name=".CreatorActivity"
+            android:label="@string/title_activity_creator"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
