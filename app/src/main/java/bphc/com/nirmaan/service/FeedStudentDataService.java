@@ -25,7 +25,6 @@ public class FeedStudentDataService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         Realm.init(this);
         Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
 
         Call<StuQuestions> studentDataCall = ApiManager.getInstance().getService().getStudentData(
                 LoginPrefs.getNamePref(this),
