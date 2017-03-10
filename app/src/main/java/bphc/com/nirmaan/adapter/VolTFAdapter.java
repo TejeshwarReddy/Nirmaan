@@ -2,6 +2,7 @@ package bphc.com.nirmaan.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,17 +42,18 @@ public class VolTFAdapter extends RecyclerView.Adapter<VolTFAdapter.TFViewHolder
     @Override
     public TFViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_vol_mcq_card, parent, false);
+                .inflate(R.layout.custom_vol_tf_card, parent, false);
         return new TFViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(TFViewHolder holder, int position) {
         RadioGroup radioGroup = holder.radioGroup;
-        radioGroup.removeAllViews();
+//        radioGroup.removeAllViews();
 
         VolTruefalse tf = tfList.get(position);
-        holder.q_no.setText(tf.getId());
+        Log.e("Random tag", tf.getQuestion());
+        holder.q_no.setText(Integer.toString(position));
         holder.question.setText(tf.getQuestion());
 
         //For answer

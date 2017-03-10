@@ -8,15 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.database.DBTransactions;
-import bphc.com.nirmaan.object.VolMcq;
 import bphc.com.nirmaan.service.FeedStudentDataService;
 import bphc.com.nirmaan.service.FeedVolunteerDataService;
-import io.realm.RealmResults;
 
 public class LandingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,8 +38,8 @@ public class LandingActivity extends AppCompatActivity
             case 2:
                 setStudentUi(savedInstanceState);
                 break;
-            default:
-                throw new UnknownError("'" + priviledge + "'" + " priviledge is not permissible.");
+            /*default:
+                throw new UnknownError("'" + priviledge + "'" + " priviledge is not permissible.");*/
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,11 +55,11 @@ public class LandingActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
-        transactions = new DBTransactions(this);
+        /*transactions = new DBTransactions(this);
         RealmResults<VolMcq> volMcqs = transactions.getVolMcqs(1486073208000l);
         for (int i = 0; i< volMcqs.size(); i++){
             Log.e(TAG, volMcqs.get(i).getQuestion());
-        }
+        }*/
     }
 
     private void setVolunteerUi(Bundle savedInstanceState) {
@@ -116,7 +113,7 @@ public class LandingActivity extends AppCompatActivity
                 LoginPrefs.setPrefs(this,null,null,-1,-1);
                 break;
         }
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
