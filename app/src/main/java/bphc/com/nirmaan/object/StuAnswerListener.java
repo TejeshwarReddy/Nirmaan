@@ -23,6 +23,10 @@ public class StuAnswerListener extends RealmObject{
     @SerializedName("isRight")
     int isRight;
 
+    public StuAnswerListener(){
+
+    }
+
     public StuAnswerListener(String answer, String subject, int topic_id, int type, int question_id, int isRight) {
         this.answer = answer;
         this.subject = subject;

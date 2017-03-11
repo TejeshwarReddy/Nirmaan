@@ -87,7 +87,7 @@ public class LandingActivity extends AppCompatActivity
                 LoginPrefs.setPrefs(this,null,null,-1,-1);
                 break;
         }
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

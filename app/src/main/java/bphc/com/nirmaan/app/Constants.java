@@ -6,7 +6,7 @@ package bphc.com.nirmaan.app;
 
 public class Constants {
 
-    public static final String URL="http://172.16.113.191/nirmaan/";
+    public static final String URL="http://172.16.112.23/nirmaan/";
     public static final String login_name = "name";
     public static final String login_password = "password";
     public static final String login_privilege = "privilege";
