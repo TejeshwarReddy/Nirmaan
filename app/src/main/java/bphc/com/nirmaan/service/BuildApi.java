@@ -45,4 +45,9 @@ public interface BuildApi {
     Call<TopicList> getTopics(@Query("class") String classname,
                               @Query("subject") String subject);
 
+    @GET("admin_data.php")
+    Call<String> getAdminData(@Query("name") String name,
+                              @Query("password") String password);
+
+
 }
