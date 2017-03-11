@@ -2,6 +2,8 @@ package bphc.com.nirmaan.service;
 
 import bphc.com.nirmaan.object.LoginSet;
 import bphc.com.nirmaan.object.StuQuestions;
+import bphc.com.nirmaan.object.Subjects;
+import bphc.com.nirmaan.object.TopicList;
 import bphc.com.nirmaan.object.VolQuestions;
 import bphc.com.nirmaan.object.VolScheduleCollections;
 import bphc.com.nirmaan.object.VolunteerList;
@@ -35,5 +37,11 @@ public interface BuildApi {
     Call<VolunteerList> getVolunteers(@Query("name") String name,
                                       @Query("password") String password,
                                       @Query("key") String key);
+
+    @GET("subject_data.php")
+    Call<Subjects> getSubjects(@Query("class") String classname);
+
+    @GET("subject_data.php")
+    Call<TopicList> getTopics(@Query("class") String classname, String subject);
 
 }
