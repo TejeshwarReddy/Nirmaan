@@ -66,7 +66,7 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
     public void onBindViewHolder(final StuMcqAdapter.StuMcqViewHolder holder, int position) {
         final StuMcq mcq = mcqList.get(position);
 
-        //holder.q_no.setText(position);
+        holder.q_no.setText(""+position+"");
         holder.question.setText(mcq.getQuestion());
         holder.r1.setText(mcq.getA());
         holder.r2.setText(mcq.getB());
@@ -193,7 +193,7 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
 
 
             StuAnswerListener listener = listenerSet.get(0);
-            if(listener.getIsRight()==0){
+            if(listener.getIsRight()==1){ // Student answered correct
                 String stuAns = listener.getAnswer();
                 switch (stuAns){
                     case "A":

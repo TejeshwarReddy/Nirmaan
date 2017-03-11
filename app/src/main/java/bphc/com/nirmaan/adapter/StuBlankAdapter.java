@@ -70,7 +70,7 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
         //answersLinearLayoutContainer.removeAllViews();
 
         final StuBlank blank = blankList.get(position);
-//        holder.q_no.setText(position);
+        holder.q_no.setText(""+position+"");
         holder.question.setText(blank.getQuestion());
 
         final DBTransactions dbTransactions = new DBTransactions(context);
