@@ -42,6 +42,7 @@ public interface BuildApi {
     Call<Subjects> getSubjects(@Query("class") String classname);
 
     @GET("subject_data.php")
-    Call<TopicList> getTopics(@Query("class") String classname, String subject);
+    Call<TopicList> getTopics(@Query("class") String classname,
+                              @Query("subject") String subject);
 
 }
