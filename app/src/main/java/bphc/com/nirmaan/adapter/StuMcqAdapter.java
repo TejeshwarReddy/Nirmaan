@@ -79,7 +79,7 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
         RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(mcq.getSubject(),
                 Integer.parseInt(mcq.getTopicId()),Integer.parseInt(mcq.getId()),1);
 
-        if(listenerSet==null){
+        if(listenerSet.size()==0){
             holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -172,7 +172,7 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
                 }
             });
         }
-        else if (listenerSet.size()==1){
+        else { // If the listenerSet.size()!=0 ==> Question was answered before
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==0){
                 String stuAns = listener.getAnswer();

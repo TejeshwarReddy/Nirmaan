@@ -83,12 +83,15 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
 
                     // make the buttons non-editable
                     holder.radioGroup.setClickable(false);
+                    holder.radioGroup.setEnabled(false);
+                    holder.r1.setClickable(false);
+                    holder.r2.setClickable(false);
 
                     int radioButtonID = radioGroup.getCheckedRadioButtonId(); Log.e("TDSK TF VIEWER", radioButtonID+""); //remove later
                     switch (radioButtonID){
                         case R.id.stu_tf_r1:    // If the true is selected;
                             if(Integer.parseInt(tf.getAns())==1){
-                                // If answer is "true"
+                                // If the correct answer is "true"
                                 dbTransactions.feedStudentAnswer("1",
                                         tf.getSubject(),
                                         2,
@@ -137,7 +140,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
         }
         else { //If listenerSet.size()!=0 --> Meaning that the question has been answered before
             StuAnswerListener listener = listenerSet.get(0);
-            if(listener.getIsRight()==0){
+            if(listener.getIsRight()==1){
                 // if the student answered correctly
                 String stuAns = listener.getAnswer();
                 switch (stuAns){
@@ -157,13 +160,16 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                         holder.r1.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
                         break;
-                    case "0":
+                    case "0": // if the student answered false (which is also wrong)
                         holder.r2.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
                 }
             }
             // make the buttons non-editable
             holder.radioGroup.setClickable(false);
+            holder.radioGroup.setEnabled(false);
+            holder.r1.setClickable(false);
+            holder.r2.setClickable(false);
         }
 
 /*
