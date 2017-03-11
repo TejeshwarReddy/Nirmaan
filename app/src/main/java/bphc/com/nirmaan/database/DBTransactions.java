@@ -66,14 +66,14 @@ public class DBTransactions {
                 .findAll();
     }
 
-    public RealmResults<StuMcq> getStuMcqs(String subject,int topicid){
+    public RealmResults<StuMcq> getStuMcqs(String subject,String topicid){
         realm = Realm.getDefaultInstance();
         return realm.where(StuMcq.class)
                 .equalTo("subject",subject)
                 .equalTo("topicId",topicid)
                 .findAll();
     }
-    public RealmResults<StuTruefalse> getStuTF(String subject, int topicid){
+    public RealmResults<StuTruefalse> getStuTF(String subject, String topicid){
         realm = Realm.getDefaultInstance();
         return realm.where(StuTruefalse.class)
                 .equalTo("subject",subject)
@@ -81,7 +81,7 @@ public class DBTransactions {
                 .findAll();
     }
 
-    public RealmResults<StuBlank> getStuBlanks(String subject, int topicid){
+    public RealmResults<StuBlank> getStuBlanks(String subject, String topicid){
         realm = Realm.getDefaultInstance();
         return realm.where(StuBlank.class)
                 .equalTo("subject",subject)

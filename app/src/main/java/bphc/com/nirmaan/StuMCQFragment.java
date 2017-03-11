@@ -39,7 +39,7 @@ public class StuMCQFragment extends Fragment {
                         getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));*/
 
         mcqs = new DBTransactions(getActivity())
-                .getStuMcqs("English",1);
+                .getStuMcqs("English","1");
 
         for (int i = 0;i<mcqs.size();i++){
             Log.e("Stumcqs10",mcqs.get(i).getQuestion());

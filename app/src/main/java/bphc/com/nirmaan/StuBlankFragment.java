@@ -38,7 +38,7 @@ public class StuBlankFragment extends Fragment {
                         getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));
 */
         blanks = new DBTransactions(getActivity())
-                .getStuBlanks("English",1);
+                .getStuBlanks("English","1");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stu_blank, container, false);

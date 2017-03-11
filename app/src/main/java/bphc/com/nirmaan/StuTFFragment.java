@@ -35,7 +35,7 @@ public class StuTFFragment extends Fragment {
                         getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));*/
 
         tfList = new DBTransactions(getActivity())
-                .getStuTF("English",1);
+                .getStuTF("English","1");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stu_tf, container, false);
