@@ -83,6 +83,15 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
             holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                    // make the buttons non-editable
+                    holder.radioGroup.setClickable(false);
+                    holder.radioGroup.setEnabled(false);
+                    holder.r1.setClickable(false);
+                    holder.r2.setClickable(false);
+                    holder.r3.setClickable(false);
+                    holder.r4.setClickable(false);
+
                     int radioButtonID = radioGroup.getCheckedRadioButtonId();
                     switch (radioButtonID){
                         case R.id.stu_mcq_opt1:
@@ -173,6 +182,16 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
             });
         }
         else { // If the listenerSet.size()!=0 ==> Question was answered before
+
+            // make the buttons non-editable
+            holder.radioGroup.setClickable(false);
+            holder.radioGroup.setEnabled(false);
+            holder.r1.setClickable(false);
+            holder.r2.setClickable(false);
+            holder.r3.setClickable(false);
+            holder.r4.setClickable(false);
+
+
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==0){
                 String stuAns = listener.getAnswer();
