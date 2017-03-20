@@ -54,10 +54,8 @@ public interface BuildApi {
 
     @FormUrlEncoded
     @POST("admin_post.php")
-    Call<Integer> getPostOutput(@Field("name") String vol_id,
-                                @Field("topic_id") int topic_id,
+    Call<String> getPostOutput(@Field("name") String vol_id,
+                                @Field("topic_id") String topic_id,
                                 @Field("datetime") long datetime);
-
-
 
 }

@@ -47,7 +47,7 @@ public class CreatorAssigningFragment extends Fragment {
     ArrayList<String> names=null,classes=null,subjects=null,topics=null;
     SingleDateAndTimePickerDialog.Builder picker;
     ArrayAdapter<String> subjectsAdapter = null,topicsAdapter = null;
-    String vol_id =null,selectedClass="",selectedSubject="",selectedTopic="";
+    String vol_id ="",selectedClass="",selectedSubject="",selectedTopic="";
     List<Topic> topicList = null;
     Button assign;
 
@@ -91,25 +91,34 @@ public class CreatorAssigningFragment extends Fragment {
         subject_select = (Spinner) view.findViewById(R.id.subject_spinner);
         topic_select = (Spinner) view.findViewById(R.id.topic_spinner);
         dateandtime = (TextView) view.findViewById(R.id.input_date_time);
+        assign = (Button) view.findViewById(R.id.button_assign);
 
         dateandtime.setInputType(InputType.TYPE_NULL);
 
         assign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!vol_id.isEmpty()){
-                    if (!selectedClass.isEmpty()){
-                        if (!selectedSubject.isEmpty()){
-                            if (selectedTime!=0){
-
-                            }else{
-
+                if (!vol_id.equals("")){
+                    if (selectedTime != 0) {
+                        Log.e("vol_id", vol_id);
+                        Log.e("selectedTopic", selectedTopic);
+                        Log.e("selectedTime", selectedTime + "");
+                        Call<String> postCall = ApiManager.getInstance().getService().getPostOutput(vol_id,
+                                selectedTopic,
+                                selectedTime);
+                        postCall.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                Toast.makeText(getActivity(), response.body(), Toast.LENGTH_SHORT).show();
                             }
-                        }else{
 
-                        }
-                    }else{
-
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                                Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getActivity(), "Select a date and time", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     Toast.makeText(getActivity(),"Select a volunteer",Toast.LENGTH_SHORT).show();
@@ -177,15 +186,12 @@ public class CreatorAssigningFragment extends Fragment {
             }
         });
 
-        volunteerSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        volunteerSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 vol_id = storeResponse.body().getVolunteers().get(i).getUserId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+                Log.e("vol id","hello");
+                Log.e("vol id",vol_id);
             }
         });
 
@@ -205,19 +211,20 @@ public class CreatorAssigningFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedClass = classes.get(i);
                 if (i!=0) {
-                    Log.e("hello from class","hello from class 1 ");
                     Call<Subjects> subjectsCall = ApiManager.getInstance().getService().getSubjects(selectedClass);
                     subjectsCall.enqueue(new Callback<Subjects>() {
                         @Override
                         public void onResponse(Call<Subjects> call, Response<Subjects> response) {
                             subjects = response.body().getSubjects();
                             for(int i=0;i<subjects.size();i++){
-                                Log.e("subejcts",subjects.get(i));
+                                Log.e("subjects",subjects.get(i));
                             }
                             subjectsAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item,subjects);
                             subject_select.setAdapter(subjectsAdapter);
                             subjectsAdapter.notifyDataSetChanged();
                             subject_select.setEnabled(true);
+                            if (subjects.size()!=0)
+                                selectedSubject = subjects.get(0);
                         }
 
                         @Override
@@ -245,6 +252,7 @@ public class CreatorAssigningFragment extends Fragment {
                         public void onResponse(Call<TopicList> call, Response<TopicList> response) {
                             topicList = response.body().getTopics();
                             if (topicList.size()!=0){
+                                selectedTopic = topicList.get(0).getId();
                                 topics.clear();
                             }
                             for (int i = 0; i < topicList.size(); i++) {
@@ -275,7 +283,10 @@ public class CreatorAssigningFragment extends Fragment {
         topic_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedTopic = subjects.get(i);
+                if (topicList!=null&&topicList.size()!=0) {
+                    selectedTopic = topicList.get(i).getId();
+                    Log.e("topicselected", selectedTopic);
+                }
             }
 
             @Override

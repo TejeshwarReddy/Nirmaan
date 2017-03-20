@@ -5,13 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-import io.realm.RealmObject;
-
 /**
  * Created by tejeshwar on 11/3/17.
  */
 
-public class Subjects extends RealmObject{
+public class Subjects {
 
     @SerializedName("subjects")
     @Expose

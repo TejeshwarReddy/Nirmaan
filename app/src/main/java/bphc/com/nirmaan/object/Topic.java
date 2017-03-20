@@ -3,16 +3,12 @@ package bphc.com.nirmaan.object;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-
 /**
  * Created by tejeshwar on 11/3/17.
  */
 
-public class Topic extends RealmObject{
+public class Topic {
 
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private String id;
