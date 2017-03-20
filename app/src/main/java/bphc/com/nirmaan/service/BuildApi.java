@@ -8,7 +8,10 @@ import bphc.com.nirmaan.object.VolQuestions;
 import bphc.com.nirmaan.object.VolScheduleCollections;
 import bphc.com.nirmaan.object.VolunteerList;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -48,6 +51,13 @@ public interface BuildApi {
     @GET("admin_data.php")
     Call<String> getAdminData(@Query("name") String name,
                               @Query("password") String password);
+
+    @FormUrlEncoded
+    @POST("admin_post.php")
+    Call<Integer> getPostOutput(@Field("name") String vol_id,
+                                @Field("topic_id") int topic_id,
+                                @Field("datetime") long datetime);
+
 
 
 }

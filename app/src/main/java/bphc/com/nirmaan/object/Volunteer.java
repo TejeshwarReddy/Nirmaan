@@ -4,9 +4,6 @@ package bphc.com.nirmaan.object;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -16,9 +13,9 @@ public class Volunteer extends RealmObject{
     @SerializedName("name")
     @Expose
     private String name;
-    @PrimaryKey
     @SerializedName("user_id")
     @Expose
+    @PrimaryKey
     private String userId;
     @SerializedName("visits")
     @Expose

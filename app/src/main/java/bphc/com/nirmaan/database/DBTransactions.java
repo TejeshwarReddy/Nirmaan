@@ -12,6 +12,7 @@ import bphc.com.nirmaan.object.VolBlank;
 import bphc.com.nirmaan.object.VolMcq;
 import bphc.com.nirmaan.object.VolSchedule;
 import bphc.com.nirmaan.object.VolTruefalse;
+import bphc.com.nirmaan.object.Volunteer;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -88,6 +89,12 @@ public class DBTransactions {
                 .findAll();
     }
 
+    public RealmResults<Volunteer> getAllVolunteersData(){
+        realm = Realm.getDefaultInstance();
+        return realm.where(Volunteer.class)
+                .findAll();
+    }
+
     public void feedStudentAnswer(String answer, String subject,  int type, int topic_id, int question_id, int isRight){
         realm = Realm.getDefaultInstance();
         StuAnswerListener stuAnswerListener = realm.createObject(StuAnswerListener.class);
@@ -120,4 +127,8 @@ public class DBTransactions {
                 .equalTo("type",type)
                 .findAll();
     }
+
+
+
+
 }

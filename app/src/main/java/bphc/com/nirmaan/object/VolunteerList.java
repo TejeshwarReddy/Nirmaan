@@ -1,43 +1,40 @@
+
 package bphc.com.nirmaan.object;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import io.realm.RealmList;
+import io.realm.RealmObject;
 
-/**
- * Created by tejeshwar on 9/3/17.
- */
-
-public class VolunteerList {
+public class VolunteerList extends RealmObject{
 
     @SerializedName("volunteers")
     @Expose
-    private List<Volunteer> volunteers = null;
+    private RealmList<Volunteer> volunteers;
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
     public VolunteerList() {
     }
 
     /**
-     *
+     * 
      * @param volunteers
      */
-    public VolunteerList(List<Volunteer> volunteers) {
+    public VolunteerList(RealmList<Volunteer> volunteers) {
         super();
         this.volunteers = volunteers;
     }
 
-    public List<Volunteer> getVolunteers() {
+    public RealmList<Volunteer> getVolunteers() {
         return volunteers;
     }
 
-    public void setVolunteers(List<Volunteer> volunteers) {
+    public void setVolunteers(RealmList<Volunteer> volunteers) {
         this.volunteers = volunteers;
     }
-
 
 }
