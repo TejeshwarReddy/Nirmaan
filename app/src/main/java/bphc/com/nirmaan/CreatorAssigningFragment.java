@@ -51,6 +51,8 @@ public class CreatorAssigningFragment extends Fragment {
     List<Topic> topicList = null;
     Button assign;
 
+    Response<VolunteerList> storeResponse;
+
     public CreatorAssigningFragment() {
         // Required empty public constructor
     }
@@ -153,6 +155,7 @@ public class CreatorAssigningFragment extends Fragment {
                 volunteerListCall.enqueue(new Callback<VolunteerList>() {
                     @Override
                     public void onResponse(Call<VolunteerList> call, Response<VolunteerList> response) {
+                        storeResponse = response;
                         for(int i=0;i<response.body().getVolunteers().size();i++){
                             names.add(i,response.body().getVolunteers().get(i).getName());
                         }
@@ -170,6 +173,18 @@ public class CreatorAssigningFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        volunteerSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vol_id = storeResponse.body().getVolunteers().get(i).getUserId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -195,7 +210,7 @@ public class CreatorAssigningFragment extends Fragment {
                     subjectsCall.enqueue(new Callback<Subjects>() {
                         @Override
                         public void onResponse(Call<Subjects> call, Response<Subjects> response) {
-                            subjects = (ArrayList<String>) response.body().getSubjects();
+                            subjects = response.body().getSubjects();
                             for(int i=0;i<subjects.size();i++){
                                 Log.e("subejcts",subjects.get(i));
                             }
