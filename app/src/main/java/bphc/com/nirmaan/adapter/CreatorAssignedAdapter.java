@@ -28,7 +28,7 @@ public class CreatorAssignedAdapter extends
         ary = new int[mVolunteerList.size()];
         for (int i = 0; i < mVolunteerList.size(); i++) {
             Volunteer volunteer = mVolunteerList.get(i);
-            totalSchedules += volunteer.getVisits().size();
+            totalSchedules = totalSchedules + volunteer.getVisits().size();
             ary[i] = totalSchedules;
         }
     }
@@ -60,8 +60,13 @@ public class CreatorAssignedAdapter extends
 
     @Override
     public void onBindViewHolder(CreatorAssignedViewHolder holder, int position) {
-        int volIndex = binarySearch(ary, position);
-        int assignedScheduleIndex = ary[volIndex] - ary[volIndex-1] - 1;
+        int volIndex = binarySearch(ary, position + 1);
+        int assignedScheduleIndex;
+        if (volIndex == 0) {
+            assignedScheduleIndex = position - 1;
+        } else {
+            assignedScheduleIndex = (position + 1) - ary[volIndex-1] - 1;
+        }
         Volunteer volunteer = mVolunteerList.get(volIndex);
         Visit visit = volunteer.getVisits().get(assignedScheduleIndex);
         holder.bind(volunteer, visit);
