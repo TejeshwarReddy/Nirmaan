@@ -2,6 +2,7 @@ package bphc.com.nirmaan.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,50 +23,50 @@ import io.realm.RealmResults;
 
 public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHolder> {
 
-private RealmResults<StuTruefalse> tfList;
-private Context context;
+    private RealmResults<StuTruefalse> tfList;
+    private Context context;
 
-public StuTFAdapter(Context context, RealmResults<StuTruefalse> tfList) {
+    public StuTFAdapter(Context context, RealmResults<StuTruefalse> tfList) {
         this.context = context;
         this.tfList = tfList;
-        }
-
-class StuTFViewHolder extends RecyclerView.ViewHolder {
-    TextView question,q_no, correctAns;
-    RadioGroup radioGroup;
-    RadioButton r1, r2;
-
-    ImageView correct, wrong;
-
-    StuTFViewHolder(View itemView) {
-        super(itemView);
-        q_no = (TextView) itemView.findViewById(R.id.stu_tf_q_no);
-        question = (TextView) itemView.findViewById(R.id.stu_tf_q_text);
-        radioGroup=(RadioGroup) itemView.findViewById(R.id.stu_tf_q_radiogroup);
-        r1=(RadioButton) itemView.findViewById(R.id.stu_tf_r1);
-        r2=(RadioButton) itemView.findViewById(R.id.stu_tf_r2);
-
-        correctAns = (TextView) itemView.findViewById(R.id.stu_tf_correct_answer);
-        correct = (ImageView) itemView.findViewById(R.id.stu_tf_correct);
-        wrong = (ImageView) itemView.findViewById(R.id.stu_tf_wrong);
     }
 
-}
+    class StuTFViewHolder extends RecyclerView.ViewHolder {
+        TextView question,q_no, correctAns;
+        RadioGroup radioGroup;
+        RadioButton r1, r2;
+
+        ImageView correct, wrong;
+
+        StuTFViewHolder(View itemView) {
+            super(itemView);
+            q_no = (TextView) itemView.findViewById(R.id.stu_tf_q_no);
+            question = (TextView) itemView.findViewById(R.id.stu_tf_q_text);
+            radioGroup=(RadioGroup) itemView.findViewById(R.id.stu_tf_q_radiogroup);
+            r1=(RadioButton) itemView.findViewById(R.id.stu_tf_r1);
+            r2=(RadioButton) itemView.findViewById(R.id.stu_tf_r2);
+
+            correctAns = (TextView) itemView.findViewById(R.id.stu_tf_correct_answer);
+            correct = (ImageView) itemView.findViewById(R.id.stu_tf_correct);
+            wrong = (ImageView) itemView.findViewById(R.id.stu_tf_wrong);
+        }
+
+    }
 
     @Override
     public StuTFAdapter.StuTFViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_stu_mcq_card, parent, false);
+                .inflate(R.layout.custom_stu_tf_card, parent, false);
         return new StuTFAdapter.StuTFViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final StuTFAdapter.StuTFViewHolder holder, int position) {
         RadioGroup radioGroup = holder.radioGroup;
-        radioGroup.removeAllViews();
+        //radioGroup.removeAllViews();
 
         final StuTruefalse tf = tfList.get(position);
-        holder.q_no.setText(tf.getId());
+//        holder.q_no.setText(tf.getId());
         holder.question.setText(tf.getQuestion());
 
 
@@ -75,14 +76,19 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
         RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(tf.getSubject(),
                 Integer.parseInt(tf.getTopicId()),Integer.parseInt(tf.getId()),2);
 
-        if(listenerSet==null){
+        if(listenerSet.size()==0){ //if the question is unanswered
             holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    int radioButtonID = radioGroup.getCheckedRadioButtonId();
+
+                    // make the buttons non-editable
+                    holder.radioGroup.setClickable(false);
+
+                    int radioButtonID = radioGroup.getCheckedRadioButtonId(); Log.e("TDSK TF VIEWER", radioButtonID+""); //remove later
                     switch (radioButtonID){
                         case R.id.stu_tf_r1:    // If the true is selected;
                             if(Integer.parseInt(tf.getAns())==1){
+                                // If answer is "true"
                                 dbTransactions.feedStudentAnswer("1",
                                         tf.getSubject(),
                                         2,
@@ -90,8 +96,10 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
                                         Integer.parseInt(tf.getId()),
                                         1);
                                 holder.correct.setVisibility(View.VISIBLE);
+                                holder.correctAns.setVisibility(View.VISIBLE);
                             }
                             else {
+                                // If correct answer is "false"
                                 dbTransactions.feedStudentAnswer("1",
                                         tf.getSubject(),
                                         2,
@@ -100,6 +108,7 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
                                         0);
                                 holder.wrong.setVisibility(View.VISIBLE);
                                 holder.correctAns.setText("Correct option is: False");
+                                holder.correctAns.setVisibility(View.VISIBLE);
                             }
                             break;
                         case R.id.stu_mcq_opt2: // if student selected false
@@ -126,7 +135,8 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
                 }
             });
         }
-        else if(listenerSet.size()==1){
+
+        else { //If listenerSet.size()!=0 --> Meaning that the question has been answered before
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==0){
                 // if the student answered correctly
@@ -153,6 +163,8 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
                         holder.wrong.setVisibility(View.VISIBLE);
                 }
             }
+            // make the buttons non-editable
+            holder.radioGroup.setClickable(false);
         }
 
 /*
@@ -175,3 +187,4 @@ class StuTFViewHolder extends RecyclerView.ViewHolder {
         return tfList.size();
     }
 }
+

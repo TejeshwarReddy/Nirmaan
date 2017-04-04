@@ -9,24 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import bphc.com.nirmaan.adapter.StuBlankAdapter;
-import bphc.com.nirmaan.adapter.VolBlankAdapter;
-import bphc.com.nirmaan.app.Constants;
+import bphc.com.nirmaan.adapter.StuTFAdapter;
 import bphc.com.nirmaan.database.DBTransactions;
-import bphc.com.nirmaan.object.StuMcq;
 import bphc.com.nirmaan.object.StuTruefalse;
-import bphc.com.nirmaan.object.VolBlank;
 import io.realm.RealmResults;
 
 /**
- * Created by sarath on 05-02-2017.
+ * A simple {@link Fragment} subclass.
  */
-
 public class StuTFFragment extends Fragment {
 
-    RealmResults<StuTruefalse> mcqs;
-    RecyclerView tfRecycler;
 
+    RecyclerView tfrecycler;
+    RealmResults<StuTruefalse> tfList;
     public StuTFFragment() {
         // Required empty public constructor
     }
@@ -35,21 +30,21 @@ public class StuTFFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // Get the Realm StuBlank object from the database!
-        mcqs = new DBTransactions(getActivity())
+        /*tfList = new DBTransactions(getActivity())
                 .getStuTF(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
-                        getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));
+                        getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));*/
+
+        tfList = new DBTransactions(getActivity())
+                .getStuTF("English","1");
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stu_blank, container, false);
+        return inflater.inflate(R.layout.fragment_stu_tf, container, false);
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        tfRecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_blank);
-        //blankRecycler.setAdapter(new StuBlankAdapter(getActivity(),));
-        tfRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        tfrecycler = (RecyclerView) view.findViewById(R.id.recycler_view_stu_tf);
+        tfrecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        tfrecycler.setAdapter(new StuTFAdapter(getActivity(), tfList));
     }
 }
