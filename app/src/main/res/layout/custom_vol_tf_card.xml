@@ -56,12 +56,16 @@
 
                 <RadioButton
                     android:id="@+id/vol_tf_r1"
+                    android:editable="false"
+                    android:clickable="false"
                     android:text="True"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:id="@+id/vol_tf_r2"
+                    android:editable="false"
+                    android:clickable="false"
                     android:text="False"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

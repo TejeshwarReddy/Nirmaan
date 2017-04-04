@@ -66,7 +66,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
         //radioGroup.removeAllViews();
 
         final StuTruefalse tf = tfList.get(position);
-//        holder.q_no.setText(tf.getId());
+        holder.q_no.setText(""+position+"");
         holder.question.setText(tf.getQuestion());
 
 
@@ -83,12 +83,15 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
 
                     // make the buttons non-editable
                     holder.radioGroup.setClickable(false);
+                    holder.radioGroup.setEnabled(false);
+                    holder.r1.setClickable(false);
+                    holder.r2.setClickable(false);
 
                     int radioButtonID = radioGroup.getCheckedRadioButtonId(); Log.e("TDSK TF VIEWER", radioButtonID+""); //remove later
                     switch (radioButtonID){
                         case R.id.stu_tf_r1:    // If the true is selected;
                             if(Integer.parseInt(tf.getAns())==1){
-                                // If answer is "true"
+                                // If the correct answer is "true"
                                 dbTransactions.feedStudentAnswer("1",
                                         tf.getSubject(),
                                         2,
@@ -96,7 +99,6 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                                         Integer.parseInt(tf.getId()),
                                         1);
                                 holder.correct.setVisibility(View.VISIBLE);
-                                holder.correctAns.setVisibility(View.VISIBLE);
                             }
                             else {
                                 // If correct answer is "false"
@@ -121,7 +123,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                                         1);
                                 holder.correct.setVisibility(View.VISIBLE);
                             }
-                            else {
+                            else {  // if the answer is true
                                 dbTransactions.feedStudentAnswer("0",
                                         tf.getSubject(),
                                         2,
@@ -130,6 +132,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                                         0);
                                 holder.wrong.setVisibility(View.VISIBLE);
                                 holder.correctAns.setText("Correct option is: False");
+                                holder.correctAns.setVisibility(View.VISIBLE);
                             }
                     }
                 }
@@ -138,15 +141,15 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
 
         else { //If listenerSet.size()!=0 --> Meaning that the question has been answered before
             StuAnswerListener listener = listenerSet.get(0);
-            if(listener.getIsRight()==0){
+            if(listener.getIsRight()==1){
                 // if the student answered correctly
-                String stuAns = listener.getAnswer();
+                int stuAns = Integer.parseInt(listener.getAnswer());
                 switch (stuAns){
-                    case "1": // if the student answered true (which is correct)
+                    case 1: // if the student answered true (which is correct)
                         holder.r1.setChecked(true);
                         holder.correct.setVisibility(View.VISIBLE);
                         break;
-                    case "0": // if the student answered false (which is correct)
+                    case 0: // if the student answered false (which is correct)
                         holder.r2.setChecked(true);
                         holder.correct.setVisibility(View.VISIBLE);
                 }
@@ -157,14 +160,21 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                     case "1": // if the student answered true (which is wrong)
                         holder.r1.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
+                        holder.correctAns.setText("The correct answer is: False");
+                        holder.correctAns.setVisibility(View.VISIBLE);
                         break;
-                    case "0":
+                    case "0": // if the student answered false (which is also wrong)
                         holder.r2.setChecked(true);
                         holder.wrong.setVisibility(View.VISIBLE);
+                        holder.correctAns.setText("The correct answer is: True");
+                        holder.correctAns.setVisibility(View.VISIBLE);
                 }
             }
             // make the buttons non-editable
             holder.radioGroup.setClickable(false);
+            holder.radioGroup.setEnabled(false);
+            holder.r1.setClickable(false);
+            holder.r2.setClickable(false);
         }
 
 /*

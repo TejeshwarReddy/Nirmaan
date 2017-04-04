@@ -66,9 +66,7 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
     public void onBindViewHolder(final StuMcqAdapter.StuMcqViewHolder holder, int position) {
         final StuMcq mcq = mcqList.get(position);
 
-
-        //holder.q_no.setText(position);
-
+        holder.q_no.setText(""+position+"");
         holder.question.setText(mcq.getQuestion());
         holder.r1.setText(mcq.getA());
         holder.r2.setText(mcq.getB());
@@ -81,10 +79,19 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
         RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(mcq.getSubject(),
                 Integer.parseInt(mcq.getTopicId()),Integer.parseInt(mcq.getId()),1);
 
-        if(listenerSet==null){
+        if(listenerSet.size()==0){
             holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                    // make the buttons non-editable
+                    holder.radioGroup.setClickable(false);
+                    holder.radioGroup.setEnabled(false);
+                    holder.r1.setClickable(false);
+                    holder.r2.setClickable(false);
+                    holder.r3.setClickable(false);
+                    holder.r4.setClickable(false);
+
                     int radioButtonID = radioGroup.getCheckedRadioButtonId();
                     switch (radioButtonID){
                         case R.id.stu_mcq_opt1:
@@ -174,9 +181,19 @@ public class StuMcqAdapter extends RecyclerView.Adapter<StuMcqAdapter.StuMcqView
                 }
             });
         }
-        else if (listenerSet.size()==1){
+        else { // If the listenerSet.size()!=0 ==> Question was answered before
+
+            // make the buttons non-editable
+            holder.radioGroup.setClickable(false);
+            holder.radioGroup.setEnabled(false);
+            holder.r1.setClickable(false);
+            holder.r2.setClickable(false);
+            holder.r3.setClickable(false);
+            holder.r4.setClickable(false);
+
+
             StuAnswerListener listener = listenerSet.get(0);
-            if(listener.getIsRight()==0){
+            if(listener.getIsRight()==1){ // Student answered correct
                 String stuAns = listener.getAnswer();
                 switch (stuAns){
                     case "A":
