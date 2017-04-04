@@ -135,6 +135,7 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
                 }
             });
         }
+
         else { //If listenerSet.size()!=0 --> Meaning that the question has been answered before
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==0){
@@ -186,3 +187,4 @@ public class StuTFAdapter extends RecyclerView.Adapter<StuTFAdapter.StuTFViewHol
         return tfList.size();
     }
 }
+

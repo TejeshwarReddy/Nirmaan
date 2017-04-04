@@ -24,6 +24,7 @@ public class StuAnswerListener extends RealmObject{
     int isRight;
 
     public StuAnswerListener(){
+
         // Required default empty constructor
     }
     public StuAnswerListener(String answer, String subject, int topic_id, int type, int question_id, int isRight) {

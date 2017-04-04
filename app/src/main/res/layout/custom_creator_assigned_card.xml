@@ -29,6 +29,7 @@
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:id="@+id/assigned_vol_name"
                 android:text="Tejeshwar"
                 android:textStyle="italic"
                 android:layout_width="match_parent"
@@ -39,6 +40,7 @@
             android:padding="4dp"
             android:gravity="center"
             android:textSize="22sp"
+            android:id="@+id/assigned_status"
             android:textStyle="bold"
             android:text="Assigned / Pending / Declined"
             android:layout_width="match_parent"
@@ -61,6 +63,7 @@
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:text="5"
+                android:id="@+id/assigned_class"
                 android:textStyle="italic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -81,6 +84,7 @@
             <TextView
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:id="@+id/assigned_subject"
                 android:text="English"
                 android:textStyle="italic"
                 android:layout_width="match_parent"
@@ -102,6 +106,7 @@
             <TextView
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:id="@+id/assigned_topic_id"
                 android:text="0"
                 android:textStyle="italic"
                 android:layout_width="match_parent"
@@ -123,6 +128,7 @@
             <TextView
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:id="@+id/assigned_schedule"
                 android:text="12/3/2017 5:30 PM"
                 android:textStyle="italic"
                 android:layout_width="match_parent"

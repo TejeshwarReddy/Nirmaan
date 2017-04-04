@@ -12,7 +12,7 @@ import bphc.com.nirmaan.R;
 import bphc.com.nirmaan.object.VolBlank;
 import io.realm.RealmResults;
 
-public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.FibViewHolder> {
+public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.VolBlankViewHolder> {
 
     private RealmResults<VolBlank> blankList;
     private Context context;
@@ -22,11 +22,11 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.FibVie
         this.blankList = blankList;
     }
 
-    class FibViewHolder extends RecyclerView.ViewHolder {
+    class VolBlankViewHolder extends RecyclerView.ViewHolder {
         TextView question, q_no, ans;
         LinearLayout answersLinearLayoutContainer;
 
-        FibViewHolder(View itemView) {
+        VolBlankViewHolder(View itemView) {
             super(itemView);
             q_no = (TextView) itemView.findViewById(R.id.vol_blank_q_no);
             question = (TextView) itemView.findViewById(R.id.vol_blank_q_text);
@@ -37,10 +37,10 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.FibVie
     }
 
     @Override
-    public FibViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VolBlankViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.custom_vol_blank_card, parent, false);
-        return new FibViewHolder(itemView);
+        return new VolBlankViewHolder(itemView);
     }
 
 
@@ -48,7 +48,7 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.FibVie
     // answersContainer (a horizontal lin lay) which in turn contains two views:
     // 1) Answer number (TextView) and 2) Answer StuBlank (anotherTextView) (for Volunteer).
     @Override
-    public void onBindViewHolder(FibViewHolder holder, int position) {
+    public void onBindViewHolder(VolBlankViewHolder holder, int position) {
         //LinearLayout answersLinearLayoutContainer = holder.answersLinearLayoutContainer;
         //answersLinearLayoutContainer.removeAllViews();
 

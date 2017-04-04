@@ -71,6 +71,7 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
 
         final StuBlank blank = blankList.get(position);
 //        holder.q_no.setText(position);
+        
         holder.question.setText(blank.getQuestion());
 
         final DBTransactions dbTransactions = new DBTransactions(context);
@@ -79,7 +80,6 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
         // is answered before. last parameter--> 0-blanks; 1-Mcq, 2-TF;
         RealmResults<StuAnswerListener> listenerSet = dbTransactions.getStudentAnswer(blank.getSubject(),
                 Integer.parseInt(blank.getTopicId()),Integer.parseInt(blank.getId()),0);
-
 
         Log.e("TDSK ERROR GENREATOR", "The size of the listener set is: "+listenerSet.size());
 
@@ -118,10 +118,6 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                         holder.correct.setVisibility(View.VISIBLE);
                     }
                     else{   // for wrong
-
-                        Log.e("TDSK ERROR GENERATOR", holder.ans.getText().toString()+ "\n"
-                        + blank.getSubject()+ "Topic id: "+blank.getTopicId());
-
                         dbTransactions.feedStudentAnswer(holder.ans.getText().toString(),
                                 blank.getSubject(),0,Integer.parseInt(blank.getTopicId()),
                                 Integer.parseInt(blank.getId()),0);
@@ -129,13 +125,10 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
                         // display wrong image; visible the drop-down;
                         // set correct answer in the text view.
                         // visible the correct answer.
-
-
                         holder.correctAns.setText("Correct answer is: "+ blank.getAns());
                         holder.wrong.setVisibility(View.VISIBLE);
                         holder.answerDropDown.setVisibility(View.VISIBLE);
                         holder.correctAns.setVisibility(View.VISIBLE);
-
                     }
                     holder.submit.setVisibility(View.GONE);
                 }
@@ -143,9 +136,6 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
             //holder.ans.setText(blank.getAns());
         }
         else {
-            if(listenerSet.size()<=0){
-                Log.e("TDSK ERROR GENERATOR", "listener set has less than 0 elements");
-            }
             StuAnswerListener listener = listenerSet.get(0);
             if(listener.getIsRight()==1){
                 // means if the question is answered before and is answered CORRECTLY
@@ -154,7 +144,7 @@ public class StuBlankAdapter extends RecyclerView.Adapter<StuBlankAdapter.StuBla
 
                 holder.ans.setText(listener.getAnswer());
                 //holder.correctAns.setVisibility(View.VISIBLE);
-                holder.correct.setVisibility(View.VISIBLE);
+                holder.correct.setVisibility(View.VISIBLE);             
 
             }
             else if(listener.getIsRight()==0){

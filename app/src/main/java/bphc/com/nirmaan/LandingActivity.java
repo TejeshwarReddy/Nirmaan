@@ -105,8 +105,6 @@ public class LandingActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch(id){
-            case R.id.nav_class_schedule:
-                break;
             case R.id.nav_logout:
                 startActivity(new Intent(LandingActivity.this,LoginActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
