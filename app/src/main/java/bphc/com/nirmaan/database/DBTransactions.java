@@ -91,7 +91,7 @@ public class DBTransactions {
 
           // TODO.equalTo("topic_id",topicid)
     }
-    public void feedStudentAnswer(String answer, String subject,  int type, int topic_id, int question_id, int isRight){
+    /*public void feedStudentAnswer(String answer, String subject,  int type, int topic_id, int question_id, int isRight){
         realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         StuAnswerListener stuAnswerListener = realm.createObject(StuAnswerListener.class);
@@ -123,7 +123,7 @@ public class DBTransactions {
                 .equalTo("question_id",question_id)
                 .equalTo("type",type)
                 .findAll();
-    }
+    }*/
 
     public RealmResults<StuTruefalse> getStuTF(String subject, int topicid){
         realm = Realm.getDefaultInstance();
