@@ -34,9 +34,6 @@ public class VolBlankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Get the Realm StuBlank object from the database!
-        blanks = new DBTransactions(getActivity())
-                .getVolBlanks(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vol_blank, container, false);
@@ -45,6 +42,10 @@ public class VolBlankFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        // Get the Realm StuBlank object from the database!
+        blanks = new DBTransactions(getActivity())
+                .getVolBlanks(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+
         blankRecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_blank);
         blankRecycler.setAdapter(new VolBlankAdapter(getActivity(),blanks));
         blankRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +34,7 @@ public class VolMCQFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mcqList = new DBTransactions(getActivity())
-                .getVolMcqs(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vol_mcq, container, false);
     }
@@ -43,6 +43,19 @@ public class VolMCQFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mcqList = new DBTransactions(getActivity())
+                .getVolMcqs(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+        //mcqList = new DBTransactions(getActivity()).getVolMcqs(1489173386000l);
+        for(int i=0;i<mcqList.size(); i++)
+        {
+            Log.e("TDSK", mcqList.get(i).getQuestion());
+        }
+
+        if(mcqList.isEmpty())
+            Log.e("TDSK", "The List is empty");
+        Log.e("TDSK", getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME)+"");
+
+
         mcqrecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_mcq);
         mcqrecycler.setAdapter(new VolMcqAdapter(getActivity(), mcqList));
         mcqrecycler.setLayoutManager(new LinearLayoutManager(getActivity()));

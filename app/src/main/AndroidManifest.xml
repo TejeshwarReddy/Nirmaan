@@ -12,11 +12,11 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity android:name=".LoginActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <activity
@@ -33,11 +33,11 @@
             android:name=".CreatorActivity"
             android:label="Course Creator"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <activity
@@ -46,14 +46,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".VolQuestionBankActivity"
+            android:label="@string/title_activity_scheduled_day_stuff"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".StuQuestionBankActivity"
             android:label="@string/title_activity_scheduled_day_stuff"
             android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -61,6 +61,9 @@
             android:enabled="true" />
         <service
             android:name=".service.FeedStudentDataService"
+            android:exported="false"/>
+
+        <service android:name=".service.FeedCreatorDataService"
             android:exported="false"/>
     </application>
 

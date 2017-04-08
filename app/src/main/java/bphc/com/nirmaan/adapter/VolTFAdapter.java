@@ -53,7 +53,7 @@ public class VolTFAdapter extends RecyclerView.Adapter<VolTFAdapter.TFViewHolder
 
         VolTruefalse tf = tfList.get(position);
         Log.e("Random tag", tf.getQuestion());
-        holder.q_no.setText(Integer.toString(position));
+        holder.q_no.setText(""+(position+1)+"");
         holder.question.setText(tf.getQuestion());
 
         //For answer
@@ -70,7 +70,7 @@ public class VolTFAdapter extends RecyclerView.Adapter<VolTFAdapter.TFViewHolder
 
 
     @Override
-    public int getItemCount() {
-        return tfList.size();
+    public int getItemCount() {if(tfList.isEmpty()){return 0;}
+    else return tfList.size();
     }
 }

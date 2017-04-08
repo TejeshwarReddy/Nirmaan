@@ -53,7 +53,7 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.VolBla
         //answersLinearLayoutContainer.removeAllViews();
 
         VolBlank blank = blankList.get(position);
-        holder.q_no.setText(blank.getId());
+        holder.q_no.setText(""+(position+1)+"");
         holder.question.setText(blank.getQuestion());
         holder.ans.setText(blank.getAns());
     }
@@ -62,7 +62,8 @@ public class VolBlankAdapter extends RecyclerView.Adapter<VolBlankAdapter.VolBla
 
     @Override
     public int getItemCount() {
-        return blankList.size();
+        if(blankList.isEmpty()){return 0;}
+    else return blankList.size();
     }
 }
 

@@ -56,7 +56,7 @@ public class VolMcqAdapter extends RecyclerView.Adapter<VolMcqAdapter.McqViewHol
 
         VolMcq mcq = mcqList.get(position);
 
-        holder.q_no.setText(mcq.getId());
+        holder.q_no.setText(""+(position+1)+"");
         holder.question.setText(mcq.getQuestion());
         holder.r1.setText(mcq.getA());
         holder.r2.setText(mcq.getB());
@@ -80,6 +80,7 @@ public class VolMcqAdapter extends RecyclerView.Adapter<VolMcqAdapter.McqViewHol
 
     @Override
     public int getItemCount() {
-        return mcqList.size();
+        if(mcqList.isEmpty()){return 0;}
+        else return mcqList.size();
     }
 }

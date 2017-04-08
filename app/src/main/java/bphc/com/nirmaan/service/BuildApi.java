@@ -1,5 +1,6 @@
 package bphc.com.nirmaan.service;
 
+import bphc.com.nirmaan.object.CreatorData;
 import bphc.com.nirmaan.object.LoginSet;
 import bphc.com.nirmaan.object.StudentData;
 import bphc.com.nirmaan.object.Subjects;
@@ -49,8 +50,8 @@ public interface BuildApi {
                               @Query("subject") String subject);
 
     @GET("admin_data.php")
-    Call<String> getAdminData(@Query("name") String name,
-                              @Query("password") String password);
+    Call<CreatorData> getAdminData(@Query("name") String name,
+                                   @Query("password") String password);
 
     @FormUrlEncoded
     @POST("admin_post.php")

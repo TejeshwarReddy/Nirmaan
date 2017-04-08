@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import java.util.List;
 import bphc.com.nirmaan.adapter.CreatorAssignedAdapter;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.Volunteer;
+
+import static bphc.com.nirmaan.LandingActivity.TAG;
 
 
 public class CreatorVolScheduledFragment extends Fragment {
@@ -42,12 +45,15 @@ public class CreatorVolScheduledFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.vol_scheduled_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mDbTransactions = new DBTransactions(getActivity());
         List<Volunteer> volunteerList = mDbTransactions.getAllVolunteersData();
 
+        for (int i = 0; i< volunteerList.size(); i++){
+            Log.e(TAG, volunteerList.get(i).getName());
+        }
         mCreatorAssignedAdapter = new CreatorAssignedAdapter(volunteerList);
         mRecyclerView.setAdapter(mCreatorAssignedAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }
