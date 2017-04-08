@@ -70,7 +70,7 @@ public class StuTopicFragment extends DialogFragment
         dismiss();
         Intent intent = new Intent(getActivity(), StuQuestionBankActivity.class);
         intent.putExtra(Constants.KEY_STUDENT_SUBJECT, topic.getSubject());
-        intent.putExtra(Constants.KEY_STUDENT_TOPIC_ID, Integer.parseInt(topic.getTopics()));
+        intent.putExtra(Constants.KEY_STUDENT_TOPIC_ID, topic.getTopics());
         startActivity(intent);
     }
 }

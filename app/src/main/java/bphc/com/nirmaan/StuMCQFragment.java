@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bphc.com.nirmaan.adapter.StuMcqAdapter;
+import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.StuMcq;
 import io.realm.RealmResults;
@@ -34,13 +35,13 @@ public class StuMCQFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Get the Realm StuBlank object from the database!
-       /* mcqs = new DBTransactions(getActivity())
-                .getStuMcqs(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
-                        getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));*/
-
         mcqs = new DBTransactions(getActivity())
-                .getStuMcqs("English","1");
+                .getStuMcqs(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
+                        getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_TOPIC_ID));
 
+       /* mcqs = new DBTransactions(getActivity())
+                .getStuMcqs("English","1");
+*/
         for (int i = 0;i<mcqs.size();i++){
             Log.e("Stumcqs10",mcqs.get(i).getQuestion());
         }

@@ -41,7 +41,6 @@ public class StuSubjectFragment extends Fragment implements
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mTransactions = new DBTransactions(getContext());
         mRecyclerView = (RecyclerView) view.findViewById(R.id.stu_subject_container);
-
         mSubjectMaterials = mTransactions.getMaterial();
         mAdapter = new StuSubjectAdapter(mSubjectMaterials, this);
         mRecyclerView.setAdapter(mAdapter);

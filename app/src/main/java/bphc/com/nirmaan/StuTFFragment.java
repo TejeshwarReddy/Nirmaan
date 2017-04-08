@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bphc.com.nirmaan.adapter.StuTFAdapter;
+import bphc.com.nirmaan.app.Constants;
 import bphc.com.nirmaan.database.DBTransactions;
 import bphc.com.nirmaan.object.StuTruefalse;
 import io.realm.RealmResults;
@@ -30,12 +31,12 @@ public class StuTFFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /*tfList = new DBTransactions(getActivity())
-                .getStuTF(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
-                        getActivity().getIntent().getExtras().getInt(Constants.KEY_STUDENT_TOPIC_ID));*/
-
         tfList = new DBTransactions(getActivity())
-                .getStuTF("English","1");
+                .getStuTF(getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
+                        getActivity().getIntent().getExtras().getString(Constants.KEY_STUDENT_TOPIC_ID));
+
+       /* tfList = new DBTransactions(getActivity())
+                .getStuTF("English","1");*/
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stu_tf, container, false);

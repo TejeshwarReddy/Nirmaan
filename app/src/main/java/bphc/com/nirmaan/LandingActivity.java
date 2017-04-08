@@ -8,12 +8,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import bphc.com.nirmaan.app.LoginPrefs;
 import bphc.com.nirmaan.database.DBTransactions;
+import bphc.com.nirmaan.object.StuTopicCount;
 import bphc.com.nirmaan.service.FeedStudentDataService;
 import bphc.com.nirmaan.service.FeedVolunteerDataService;
+import io.realm.RealmResults;
 
 public class LandingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -78,6 +81,12 @@ public class LandingActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(
                     R.id.container, fragment).commit();
         }
+        transactions = new DBTransactions(this);
+        RealmResults<StuTopicCount> volMcqs = transactions.getTopics("telugu");
+        for (int i = 0; i< volMcqs.size(); i++){
+            Log.e(TAG, volMcqs.get(i).getSubject());
+        }
+        Log.e(TAG, "hello");
     }
 
     @Override
