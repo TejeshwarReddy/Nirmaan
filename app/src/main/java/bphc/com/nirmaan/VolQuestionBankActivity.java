@@ -17,6 +17,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import bphc.com.nirmaan.app.Constants;
+import bphc.com.nirmaan.database.DBTransactions;
+import bphc.com.nirmaan.object.VolBlank;
+import bphc.com.nirmaan.object.VolMcq;
+import bphc.com.nirmaan.object.VolTruefalse;
+import io.realm.RealmResults;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +34,10 @@ public class VolQuestionBankActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Context context;
 
+    RealmResults<VolMcq> mcqList;
+    RealmResults<VolBlank> blanks;
+    RealmResults<VolTruefalse> tfList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +45,34 @@ public class VolQuestionBankActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question_bank);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new VolMCQFragment(), "MCQ");
-        adapter.addFragment(new VolBlankFragment(), "FIB");
-        adapter.addFragment(new VolTFFragment(), "TF");
+
+
+        mcqList = new DBTransactions(this)
+                .getVolMcqs(getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+        blanks = new DBTransactions(this)
+                .getVolBlanks(getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+        tfList = new DBTransactions(this)
+                .getVolTrueFalse(getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+
+        if(mcqList.isEmpty()){
+            adapter.addFragment(new NoQuestionsFragment(),"MCQ");
+        }
+        else{
+            adapter.addFragment(new VolMCQFragment(), "MCQ");
+        }
+        if(blanks.isEmpty()) {
+            adapter.addFragment(new NoQuestionsFragment(),"FIB");
+        }
+        else{
+            adapter.addFragment(new VolBlankFragment(), "FIB");
+        }
+        if(tfList.isEmpty())
+        {
+            adapter.addFragment(new NoQuestionsFragment(),"TF");
+        }
+        else{
+            adapter.addFragment(new VolTFFragment(), "TF");
+        }
         viewPager.setAdapter(adapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);

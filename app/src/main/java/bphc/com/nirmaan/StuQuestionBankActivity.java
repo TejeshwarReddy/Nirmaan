@@ -16,7 +16,13 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import bphc.com.nirmaan.app.Constants;
+import bphc.com.nirmaan.database.DBTransactions;
+import bphc.com.nirmaan.object.StuBlank;
+import bphc.com.nirmaan.object.StuMcq;
+import bphc.com.nirmaan.object.StuTruefalse;
 import bphc.com.nirmaan.service.FeedStudentDataService;
+import io.realm.RealmResults;
 
 
 /**
@@ -28,6 +34,10 @@ public class StuQuestionBankActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Context context;
 
+    RealmResults<StuTruefalse> tfs;
+    RealmResults<StuMcq> mcqs;
+    RealmResults<StuBlank> blanks;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +48,39 @@ public class StuQuestionBankActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new StuMCQFragment(), "MCQ");
-        adapter.addFragment(new StuBlankFragment(), "FIB");
-        adapter.addFragment(new StuTFFragment(), "TF");
+
+        mcqs = new DBTransactions(this)
+                .getStuMcqs(getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
+                        getIntent().getExtras().getString(Constants.KEY_STUDENT_TOPIC_ID));
+
+        tfs = new DBTransactions(this)
+                .getStuTF(getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
+                        getIntent().getExtras().getString(Constants.KEY_STUDENT_TOPIC_ID));
+
+        blanks = new DBTransactions(this)
+                .getStuBlanks(getIntent().getExtras().getString(Constants.KEY_STUDENT_SUBJECT),
+                        getIntent().getExtras().getString(Constants.KEY_STUDENT_TOPIC_ID));
+
+        if(mcqs.isEmpty()){
+            adapter.addFragment(new NoQuestionsFragment(),"MCQ");
+        }
+        else{
+            adapter.addFragment(new StuMCQFragment(), "MCQ");
+        }
+        if(blanks.isEmpty()) {
+            adapter.addFragment(new NoQuestionsFragment(),"FIB");
+        }
+        else{
+            adapter.addFragment(new StuBlankFragment(), "FIB");
+        }
+        if(tfs.isEmpty())
+        {
+            adapter.addFragment(new NoQuestionsFragment(),"TF");
+        }
+        else{
+            adapter.addFragment(new StuTFFragment(), "TF");
+        }
+
         viewPager.setAdapter(adapter);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
