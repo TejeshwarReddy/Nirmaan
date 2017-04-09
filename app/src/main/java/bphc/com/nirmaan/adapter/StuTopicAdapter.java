@@ -43,7 +43,7 @@ public class StuTopicAdapter extends RecyclerView.Adapter<StuTopicAdapter.StuCha
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mTopicList.size();
     }
 
     public final class StuChapterViewHolder extends RecyclerView.ViewHolder {

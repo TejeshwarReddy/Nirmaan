@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class VolBlank extends RealmObject{
 
-    @PrimaryKey
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -18,6 +18,7 @@ public class VolBlank extends RealmObject{
     private String topicId;
     @SerializedName("question")
     @Expose
+    @PrimaryKey
     private String question;
     @SerializedName("ans")
     @Expose

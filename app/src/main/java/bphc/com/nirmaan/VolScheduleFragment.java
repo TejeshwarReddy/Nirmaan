@@ -56,6 +56,7 @@ public class VolScheduleFragment extends Fragment
 
         LayoutInflater inflater = LayoutInflater.from(view.getContext());
         List<VolSchedule> schedules = mTransactions.getVolSchedule();
+        System.out.print("Size of schedules: " + schedules.size());
         mAdapter = new VolScheduleAdapter(schedules, this);
         mVolScheduleContainer.setAdapter(mAdapter);
         mVolScheduleContainer.setLayoutManager(new LinearLayoutManager(getActivity()));

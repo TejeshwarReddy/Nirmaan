@@ -9,13 +9,13 @@ import io.realm.annotations.PrimaryKey;
 
 public class VolMcq extends RealmObject{
 
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private String id;
     @SerializedName("topic_id")
     @Expose
     private String topicId;
+    @PrimaryKey
     @SerializedName("question")
     @Expose
     private String question;

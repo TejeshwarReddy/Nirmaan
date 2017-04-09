@@ -1,7 +1,8 @@
 package bphc.com.nirmaan.service;
 
+import bphc.com.nirmaan.object.CreatorData;
 import bphc.com.nirmaan.object.LoginSet;
-import bphc.com.nirmaan.object.StuQuestions;
+import bphc.com.nirmaan.object.StudentData;
 import bphc.com.nirmaan.object.Subjects;
 import bphc.com.nirmaan.object.TopicList;
 import bphc.com.nirmaan.object.VolQuestions;
@@ -33,8 +34,8 @@ public interface BuildApi {
                                                 @Query("password") String password);
 
     @GET("student_data.php")
-    Call<StuQuestions> getStudentData(@Query("name") String name,
-                                         @Query("password") String password);
+    Call<StudentData> getStudentData(@Query("name") String name,
+                                     @Query("password") String password);
 
     @GET("volunteer_search.php")
     Call<VolunteerList> getVolunteers(@Query("name") String name,
@@ -49,13 +50,16 @@ public interface BuildApi {
                               @Query("subject") String subject);
 
     @GET("admin_data.php")
-    Call<String> getAdminData(@Query("name") String name,
-                              @Query("password") String password);
+    Call<CreatorData> getAdminData(@Query("name") String name,
+                                   @Query("password") String password);
 
     @FormUrlEncoded
     @POST("admin_post.php")
     Call<String> getPostOutput(@Field("name") String vol_id,
                                 @Field("topic_id") String topic_id,
                                 @Field("datetime") long datetime);
+
+
+
 
 }

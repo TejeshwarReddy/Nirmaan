@@ -31,14 +31,15 @@ public class VolTFFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        tfList = new DBTransactions(getActivity())
-                .getVolTrueFalse(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vol_tf, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        tfList = new DBTransactions(getActivity())
+                .getVolTrueFalse(getActivity().getIntent().getExtras().getLong(Constants.KEY_VOLUNTEER_TIME));
+
         tfrecycler = (RecyclerView) view.findViewById(R.id.recycler_view_vol_tf);
         tfrecycler.setAdapter(new VolTFAdapter(getActivity(), tfList));
         tfrecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
